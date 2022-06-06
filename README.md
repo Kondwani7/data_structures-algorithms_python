@@ -7,14 +7,14 @@ This repository contains technqiues and solutions to solve various Data Structur
 * [Recursion](#ecursion)
 * [Linked Lists](#linkedlists)
 
-#Recursion
+# Recursion
 In this [section](), we will cover various ways to utilize recursion to solve dsa questions such as:
 * fibonacci numbers
 * Tower of Hanoni
 * More recursion problems attached [here](https://www.geeksforgeeks.org/recursion-practice-problems-solutions/)
 * And leetcode [problems]()
 
-#LinkedLists
+# LinkedLists
 In this [section](), we will implement various dsa questions with linked lists such as:
 * find the length of a linked list
 * get the middle node of a linked list 
