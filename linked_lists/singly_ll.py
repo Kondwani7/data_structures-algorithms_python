@@ -33,6 +33,21 @@ class SLinkedList:
         newNode.next = self.head
         #new node is the head
         self.head = newNode
+    #insert at the end of the linked list
+    def insertEnd(self, newData):
+        newNode  = Node(newData)
+        #current node that points at the head
+        current = self.head
+        if current is None:
+            current.next = newNode
+        else:
+            #travsere to the end
+            while current.next is not None:
+                #get the end of the list
+                current = current.next
+            #the current's next pointer will now point to the newNode
+            current.next = newNode
+
 
 ll1 = SLinkedList()
 ll1.head = Node(3)
@@ -47,7 +62,7 @@ n2.next = n3
 #ll1.length_ll()
 #insert at beginning of linked list
 ll1.insertFirst(1)
-print(ll1.head.data)
+ll1.insertEnd(12)
 #print list
 ll1.print_LL()
     
