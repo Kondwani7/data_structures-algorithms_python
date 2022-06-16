@@ -47,6 +47,34 @@ class SLinkedList:
                 current = current.next
             #the current's next pointer will now point to the newNode
             current.next = newNode
+    #insert at a target position
+    def insertPosition(self,position, newData):
+        newNode = Node(newData)
+        
+        #if the list is empty
+        if(position ==1):
+            newNode.next = self.head
+            #the new Node is now the head
+            self.head = newNode
+        else:
+            #the node before our target
+            previous = self.head
+            count = 1
+            #traverse the the node just before our target position
+            while (count < position -1):
+                # prev-next> target-pos ->..
+                previous = previous.next
+                count+=1
+            #our  current node now points at the previous' next pointer
+            #current --> target-position
+            current = previous.next
+            #the previous next becomes the newNode
+            #previous- next-> == newNode
+            previous.next = newNode
+            #the newNode's next pointer becomes the current
+            #newNode-next--> current
+            newNode.next = current
+
 
 
 ll1 = SLinkedList()
@@ -62,7 +90,8 @@ n2.next = n3
 #ll1.length_ll()
 #insert at beginning of linked list
 ll1.insertFirst(1)
-ll1.insertEnd(12)
+ll1.insertEnd(15)
+ll1.insertPosition(5,12)
 #print list
 ll1.print_LL()
     
