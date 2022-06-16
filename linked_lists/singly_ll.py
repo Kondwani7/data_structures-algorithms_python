@@ -74,6 +74,19 @@ class SLinkedList:
             #the newNode's next pointer becomes the current
             #newNode-next--> current
             newNode.next = current
+    #delete the first element in the list
+    def deleteFirst(self):
+        #if the list is empty
+        if (self.head is None):
+            self.head = None
+        else:
+            #temp node set is the head
+            temp = self.head
+            #make the head point at it's next, in removing it
+            self.head = self.head.next
+            #set the temp's next to point to null to delete the head
+            temp.next = None
+
 
 
 
@@ -92,6 +105,7 @@ n2.next = n3
 ll1.insertFirst(1)
 ll1.insertEnd(15)
 ll1.insertPosition(5,12)
+ll1.deleteFirst()
 #print list
 ll1.print_LL()
     
