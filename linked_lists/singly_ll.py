@@ -4,25 +4,40 @@ class Node:
         self.next = None
 
 class SLinkedList:
-   def __init__(self):
-      self.head = None
-
-   def print_LL(self):
-      n = self.head
-      while n is not None:
-            print(n.data)
-            n = n.next
+    def __init__(self):
+        self.head = None
+    #print the linked list   
+    def print_LL(self):
+        current = self.head
+        while current is not None:
+                print(f"{current.data}-->")
+                current = current.next
+        #end of list: null pointer
+        print("null")
+    #get the length of the linked list\
+    def length_ll(self):
+        count = 0
+        current = self.head
+        if current is None:
+            print
+        #traverse through the linked list
+        while current is not None:
+            count+=1
+            #end at the null value, of the list
+            current = current.next
+        print(f"list length: {count}")
 
 ll1 = SLinkedList()
-ll1.head = Node(1)
-n2 = Node(2)
-n3 = Node(3)
+ll1.head = Node(3)
+n2 = Node(6)
+n3 = Node(9)
 
 #link nodes
 ll1.head.next = n2
 n2.next = n3
 
 ll1.print_LL()
+ll1.length_ll()
 
     
    
