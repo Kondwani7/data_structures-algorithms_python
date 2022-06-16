@@ -1,3 +1,6 @@
+from requests import head
+
+
 class Node:
        def __init__(self, data=None):
         self.data = data
@@ -86,6 +89,23 @@ class SLinkedList:
             self.head = self.head.next
             #set the temp's next to point to null to delete the head
             temp.next = None
+    def deleteLast(self):
+        #if the list is empty
+        if(self.head == None and self.head.next == None):
+            self.head = None
+        else:
+            current = self.head
+            previous = None
+            #traverse to the end of the linked list
+            while(current.next is not None):
+                #update the previous as current
+                previous = current
+                #get to the end
+                current = current.next
+            #make the previous's next pointer point to null, deleting it in the process
+            previous.next = None
+            
+
 
 
 
@@ -106,6 +126,9 @@ ll1.insertFirst(1)
 ll1.insertEnd(15)
 ll1.insertPosition(5,12)
 ll1.deleteFirst()
+ll1.insertEnd(18)
+ll1.print_LL()
+ll1.deleteLast()
 #print list
 ll1.print_LL()
     
