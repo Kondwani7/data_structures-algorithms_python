@@ -1,3 +1,4 @@
+from turtle import pos
 from requests import head
 
 
@@ -104,6 +105,22 @@ class SLinkedList:
                 current = current.next
             #make the previous's next pointer point to null, deleting it in the process
             previous.next = None
+    #remove at a target postion
+    def deletePostion(self, position):
+        #if the list is null
+        if (position == 1):
+            self.head = self.head.next
+        else:
+            previous = self.head
+            count = 1
+            while (count < position -1):
+                #break loop
+                previous = previous.next
+                count +=1
+            #the previous'next is current, not targetNode
+            current = previous.next
+            #delete our target node from the list
+            previous.next = current.next
             
 
 
@@ -127,8 +144,10 @@ ll1.insertEnd(15)
 ll1.insertPosition(5,12)
 ll1.deleteFirst()
 ll1.insertEnd(18)
-ll1.print_LL()
 ll1.deleteLast()
+ll1.insertPosition(4, 10)
+ll1.print_LL()
+ll1.deletePostion(4)
 #print list
 ll1.print_LL()
     
