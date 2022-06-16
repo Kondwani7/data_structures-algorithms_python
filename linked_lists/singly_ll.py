@@ -26,6 +26,13 @@ class SLinkedList:
             #end at the null value, of the list
             current = current.next
         print(f"list length: {count}")
+    # insert node at begining of linked list
+    def insertFirst(self, newData):
+        newNode = Node(newData);
+        #make the new node's next point at the head
+        newNode.next = self.head
+        #new node is the head
+        self.head = newNode
 
 ll1 = SLinkedList()
 ll1.head = Node(3)
@@ -36,9 +43,13 @@ n3 = Node(9)
 ll1.head.next = n2
 n2.next = n3
 
+#get list length
+#ll1.length_ll()
+#insert at beginning of linked list
+ll1.insertFirst(1)
+print(ll1.head.data)
+#print list
 ll1.print_LL()
-ll1.length_ll()
-
     
    
 
