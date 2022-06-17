@@ -9,9 +9,19 @@ class Node:
 
 class SLinkedList:
     def __init__(self):
+        """
+        Description:
+            set our linked list's head
+        """
         self.head = None
     #print the linked list   
     def print_LL(self):
+        """
+        Description:
+            print our linked list
+        Returns:
+            a linked list    
+        """
         current = self.head
         while current is not None:
                 print(f"{current.data}-->")
@@ -20,6 +30,12 @@ class SLinkedList:
         print("null")
     #get the length of the linked list\
     def length_ll(self):
+        """
+        Description:
+            print the length of a linked list
+        Returns:
+            lenghth of linked list
+        """
         count = 0
         current = self.head
         if current is None:
@@ -32,6 +48,14 @@ class SLinkedList:
         print(f"list length: {count}")
     # insert node at begining of linked list
     def insertFirst(self, newData):
+        """
+            Description:
+                we will insert a new node in the first element of the linked list
+            Args:
+                newData - the data of our new node
+            Returns:
+                None
+        """
         newNode = Node(newData);
         #make the new node's next point at the head
         newNode.next = self.head
@@ -39,6 +63,14 @@ class SLinkedList:
         self.head = newNode
     #insert at the end of the linked list
     def insertEnd(self, newData):
+        """
+            Description:
+                we will insert a new node in the last element of the linked list
+            Args:
+                newData - the data of our new node
+            Returns:
+                None
+        """
         newNode  = Node(newData)
         #current node that points at the head
         current = self.head
@@ -121,8 +153,26 @@ class SLinkedList:
             current = previous.next
             #delete our target node from the list
             previous.next = current.next
-            
-
+    #check if a specific value is in one of the nodes in the linked list
+    def searchValue( targetData):
+        pass
+    #reverse a linked list
+    def reverse_LL(self):
+        current = self.head
+        previous = None
+        #traverse through each node in the list
+        while (current is not None):
+            next = current.next
+            current.next = previous
+            #previous takes current's position
+            previous = current
+            #current takes the next position
+            current = next
+        #now the previous is head of the list after the end of the loop
+        self.head = previous
+    #find the middle node in the linked list
+    #find the nth node from the end of the linked list
+    #remove duplicates
 
 
 
@@ -146,9 +196,13 @@ ll1.deleteFirst()
 ll1.insertEnd(18)
 ll1.deleteLast()
 ll1.insertPosition(4, 10)
-ll1.print_LL()
+#ll1.print_LL()
 ll1.deletePostion(4)
 #print list
+ll1.print_LL()
+#reverse list
+ll1.reverse_LL()
+#print reversed list
 ll1.print_LL()
     
    
