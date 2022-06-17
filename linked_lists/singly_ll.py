@@ -85,6 +85,15 @@ class SLinkedList:
             current.next = newNode
     #insert at a target position
     def insertPosition(self,position, newData):
+        """
+            Description:
+                we will insert a new node in the a given postion of the linked list
+            Args:
+                newData - the data of our new node
+                position - the position of our target node
+            Returns:
+                None
+        """
         newNode = Node(newData)
         
         #if the list is empty
@@ -112,6 +121,12 @@ class SLinkedList:
             newNode.next = current
     #delete the first element in the list
     def deleteFirst(self):
+        """
+            Description:
+                we will delete a new node in the first element of the linked list
+            Returns:
+                None
+        """
         #if the list is empty
         if (self.head is None):
             self.head = None
@@ -123,6 +138,12 @@ class SLinkedList:
             #set the temp's next to point to null to delete the head
             temp.next = None
     def deleteLast(self):
+        """
+            Description:
+                we will delete a new node in the last element of the linked list
+            Returns:
+                None
+        """
         #if the list is empty
         if(self.head == None and self.head.next == None):
             self.head = None
@@ -139,6 +160,14 @@ class SLinkedList:
             previous.next = None
     #remove at a target postion
     def deletePostion(self, position):
+        """
+            Description:
+                we will delete a new node in the first element of the linked list
+            Args:
+                position - the target position of the node that will be deleted
+            Returns:
+                None
+        """
         #if the list is null
         if (position == 1):
             self.head = self.head.next
@@ -158,6 +187,15 @@ class SLinkedList:
         pass
     #reverse a linked list
     def reverse_LL(self):
+        """
+            Description:
+                this will reverse our linked list
+                it will switch the roles of our initated current and previous nodes in a loop
+                current --> previous --> null 
+                Null <--previous <-- current (in a loop)
+            Returns:
+                None
+        """
         current = self.head
         previous = None
         #traverse through each node in the list
@@ -171,6 +209,25 @@ class SLinkedList:
         #now the previous is head of the list after the end of the loop
         self.head = previous
     #find the middle node in the linked list
+    def getMiddleNode(self):
+        """
+            Description:
+                this function will get the middle node of our linked list
+            
+        """
+        fastPtr = self.head
+        slowPtr = self.head
+        if(self.head is None):
+            return self.head
+        else:
+            while (fastPtr is not None and fastPtr.next is not None):
+                #the slow pointer will move to its next in a loop
+                slowPtr = slowPtr.next
+                #the fast pointer will move twice as fast
+                fastPtr = fastPtr.next.next
+            #finally we will get the slowPtr, now the mid point
+            return print(f"middle node of linked list: {slowPtr.data}")
+
     #find the nth node from the end of the linked list
     #remove duplicates
 
@@ -199,12 +256,12 @@ ll1.insertPosition(4, 10)
 #ll1.print_LL()
 ll1.deletePostion(4)
 #print list
-ll1.print_LL()
+#ll1.print_LL()
 #reverse list
-ll1.reverse_LL()
+#ll1.reverse_LL()
 #print reversed list
 ll1.print_LL()
-    
+ll1.getMiddleNode()    
    
 
 
