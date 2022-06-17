@@ -213,6 +213,8 @@ class SLinkedList:
         """
             Description:
                 this function will get the middle node of our linked list
+            Returns:
+                the middle node of our linked list
             
         """
         fastPtr = self.head
@@ -229,6 +231,38 @@ class SLinkedList:
             return print(f"middle node of linked list: {slowPtr.data}")
 
     #find the nth node from the end of the linked list
+    def getNthNodeEnd(self, n):
+        """
+        Description:
+            this function gets the nth (a given postion) node from the end of the linked list
+        Args:
+            n - the target nth node's position
+        Returns:
+            the nth node's data and next
+        """
+        #target node
+        mainPtr = self.head
+        #reference for the last node on the list
+        refPtr = self.head
+        count = 0
+        if (n< 0):
+            return print("invalid value")
+        elif (self.head is None):
+            return print(f"linked list is null: {self.head}")
+        else:
+            while (count < n):
+                if (refPtr is None):
+                    print("n is greater the number of nodes in the linked list")
+                #move the ref pointer to the nth node
+                refPtr = refPtr.next
+                count+=1
+            #move the main pointer to the target nth node
+            while (refPtr is not None):
+                #the ref pointer is now at the nth of the list
+                refPtr = refPtr.next
+                #now the main pointer will move to the nth node
+                mainPtr = mainPtr.next
+            return print(f"the nth node's data:{mainPtr.data} and it's next: {mainPtr.next}")
     #remove duplicates
 
 
@@ -261,7 +295,8 @@ ll1.deletePostion(4)
 #ll1.reverse_LL()
 #print reversed list
 ll1.print_LL()
-ll1.getMiddleNode()    
+ll1.getMiddleNode()
+ll1.getNthNodeEnd(2)    
    
 
 
