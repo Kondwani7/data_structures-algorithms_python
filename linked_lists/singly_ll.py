@@ -263,7 +263,23 @@ class SLinkedList:
                 #now the main pointer will move to the nth node
                 mainPtr = mainPtr.next
             return print(f"the nth node's data:{mainPtr.data} and it's next: {mainPtr.next}")
-    #remove duplicates
+    #remove duplicates in a sorted link list
+    def removeDuplicateNodes(self):
+        """
+        Description:
+            this function removes nodes with duplicate data in a sorted link list
+        Returns:
+            None
+        """
+        current = self.head
+        while (current is not None and current.next is not None):
+            #if there is a duplicate
+            if(current.data == current.next.data):
+                #loop to the next node, in turn deleting the duplicate
+                current.next = current.next.next
+            else:
+                #loop to the end
+                current = current.next
 
 
 
@@ -294,9 +310,14 @@ ll1.deletePostion(4)
 #reverse list
 #ll1.reverse_LL()
 #print reversed list
+#ll1.print_LL()
+#ll1.getMiddleNode()
+#ll1.getNthNodeEnd(2)
+ll1.insertPosition(2,6)
+ll1.insertPosition(5,12)
 ll1.print_LL()
-ll1.getMiddleNode()
-ll1.getNthNodeEnd(2)    
-   
+#remove duplicates
+ll1.removeDuplicateNodes()
+ll1.print_LL()
 
 
