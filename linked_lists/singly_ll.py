@@ -304,6 +304,21 @@ class SLinkedList:
             #temp --> newNode --> current
             temp.next = newNode
         return print(self.head.data)
+#detect a loop in a linked list
+    def detectLoop_LL(self):
+        fastPtr = self.head
+        slowPtr = self.head
+        if (self.head is None and self.head.next is None):
+            return print("empty linked list")
+        else:
+            while (fastPtr != None and fastPtr.next != None):
+                fastPtr = fastPtr.next.next
+                slowPtr = slowPtr
+                #if the meet in the loop
+                if(slowPtr == fastPtr):
+                    return print(f"linked list is a loop: {True}")
+            return print(f"linked list is not a loop:{False}")
+
 
 
 
@@ -342,8 +357,9 @@ ll1.insertPosition(5,12)
 #ll1.print_LL()
 #remove duplicates
 ll1.removeDuplicateNodes()
-ll1.print_LL()
+#ll1.print_LL()
 ll1.insertSorted_LL(7)
 ll1.print_LL()
+ll1.detectLoop_LL()
 
 
