@@ -1,4 +1,3 @@
-
 class Node:
        def __init__(self, data=None):
         self.data = data
@@ -325,12 +324,14 @@ class SLinkedList:
                 if(slowPtr == fastPtr):
                     return print(f"linked list is a loop: {True}")
             return print(f"linked list is not a loop: {False}")
-
+    
+    
     #detecting starting node of a linked list in a loop
     def detectStartNodeLoop(self):
         fastPtr = self.head
         slowPtr = self.head
-        def getStartingNode(slowPtr):
+        
+        def getStartingNode(self,slowPtr):
             temp = self.head
             while(slowPtr != temp):
                 temp = temp.next
@@ -345,8 +346,11 @@ class SLinkedList:
                 slowPtr = slowPtr
                 #if the meet in the loop
                 if(slowPtr == fastPtr):
-                    return getStartingNode(slowPtr)
+                    return getStartingNode(slowPtr.data)
+                break
             return print(f"linked list is not a loop: {False}")
+
+    
 
 
 
@@ -386,8 +390,27 @@ ll1.insertPosition(5,12)
 ll1.removeDuplicateNodes()
 #ll1.print_LL()
 ll1.insertSorted_LL(7)
-ll1.print_LL()
-ll1.detectLoop_LL()
-ll1.detectStartNodeLoop()
+#ll1.print_LL()
+#a linked list with a loop
+ll2 = SLinkedList()
+#head
+ll2.head = Node(0)
+node2 = Node(2)
+node3 = Node(4)
+node4 = Node(6)
+node5 = Node(8)
+node6 = Node(10)
+node7 = Node(12)
+#assign pointers
+ll2.head.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+node5.next = node6
+#loop begins at 3
+node6.next = node3
+#ll2.print_LL()
+ll2.detectLoop_LL()
+ll2.detectStartNodeLoop()
 
 
