@@ -308,6 +308,13 @@ class SLinkedList:
     def detectLoop_LL(self):
         fastPtr = self.head
         slowPtr = self.head
+        def getStartingNode(self):
+            temp = self.head
+            while(slowPtr != temp):
+                temp = temp.next
+                slowPtr = slowPtr.next
+            return temp.data
+
         if (self.head is None and self.head.next is None):
             return print("empty linked list")
         else:
@@ -317,9 +324,29 @@ class SLinkedList:
                 #if the meet in the loop
                 if(slowPtr == fastPtr):
                     return print(f"linked list is a loop: {True}")
-            return print(f"linked list is not a loop:{False}")
+            return print(f"linked list is not a loop: {False}")
 
+    #detecting starting node of a linked list in a loop
+    def detectStartNodeLoop(self):
+        fastPtr = self.head
+        slowPtr = self.head
+        def getStartingNode(slowPtr):
+            temp = self.head
+            while(slowPtr != temp):
+                temp = temp.next
+                slowPtr = slowPtr.next
+            return print(f"starting node in loop: {temp.data}")
 
+        if (self.head is None and self.head.next is None):
+            return print("empty linked list")
+        else:
+            while (fastPtr != None and fastPtr.next != None):
+                fastPtr = fastPtr.next.next
+                slowPtr = slowPtr
+                #if the meet in the loop
+                if(slowPtr == fastPtr):
+                    return getStartingNode(slowPtr)
+            return print(f"linked list is not a loop: {False}")
 
 
 
@@ -361,5 +388,6 @@ ll1.removeDuplicateNodes()
 ll1.insertSorted_LL(7)
 ll1.print_LL()
 ll1.detectLoop_LL()
+ll1.detectStartNodeLoop()
 
 
