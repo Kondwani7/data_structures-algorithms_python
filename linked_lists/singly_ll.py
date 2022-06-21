@@ -1,3 +1,6 @@
+from os import remove
+
+
 class Node:
        def __init__(self, data=None):
         self.data = data
@@ -305,14 +308,15 @@ class SLinkedList:
         return print(self.head.data)
 #detect a loop in a linked list
     def detectLoop_LL(self):
+        """
+        Description:
+            This function detects if a linked list has a loop
+        Returns:
+            - a boolean (True) if the linked list is has a loop
+            - a boolean (False) if the linked list does not have a loop
+        """
         fastPtr = self.head
         slowPtr = self.head
-        def getStartingNode(self):
-            temp = self.head
-            while(slowPtr != temp):
-                temp = temp.next
-                slowPtr = slowPtr.next
-            return temp.data
 
         if (self.head is None and self.head.next is None):
             return print("empty linked list")
@@ -328,16 +332,18 @@ class SLinkedList:
     
     #detecting starting node of a linked list in a loop
     def detectStartNodeLoop(self):
+        """
+        Description:
+            This function detects if a linked list has a loop
+        Args:
+            - getStartingNode(slowPtr) - this function finds the position of the slowPtr and and replaces its with a temp node
+                                       - it then returns the temp's data 
+        Returns:
+            - a boolean (True) if the linked list is has a loop
+            - a boolean (False) if the linked list does not have a loop
+        """
         fastPtr = self.head
         slowPtr = self.head
-        
-        def getStartingNode(self,slowPtr):
-            temp = self.head
-            while(slowPtr != temp):
-                temp = temp.next
-                slowPtr = slowPtr.next
-            return print(f"starting node in loop: {temp.data}")
-
         if (self.head is None and self.head.next is None):
             return print("empty linked list")
         else:
@@ -346,9 +352,76 @@ class SLinkedList:
                 slowPtr = slowPtr
                 #if the meet in the loop
                 if(slowPtr == fastPtr):
-                    return getStartingNode(slowPtr.data)
-                break
+                    return self.getStartingNode(slowPtr)
             return print(f"linked list is not a loop: {False}")
+
+    def detectLoop(self, loop_node):
+            temp = self.head
+            while(slowPtr != temp):
+                temp = temp.next
+                slowPtr = slowPtr.next
+            return print(f"starting node in loop: {temp.data}")
+
+    #delete a loop in a linked llst
+    def deleteLoop_LL(self):
+        fastPtr = self.head
+        slowPtr = self.head
+        if(self.head == None and self.head.next == None):
+            return print("linked list is empty")
+        else:
+            if(fastPtr != None and fastPtr.next != None):
+                fastPtr = fastPtr.next.next
+                slowPtr = slowPtr.next
+            #if there is a loop
+            if(slowPtr == fastPtr):
+                return self.removeLoop(loop_node=slowPtr)
+
+    #delete a loop
+    def removeLoop(self, loop_node):
+        ptr1 = loop_node
+        ptr2 = loop_node
+        #count number of nodes in the loop
+        n = 1
+        while(ptr1.next != ptr2):
+            ptr1 = ptr1.next
+            n+=1
+        #fix ptr1 to head
+        ptr1 = self.head
+        for i in range(n):
+            ptr2 = ptr2.next
+        #move both pointers to the same position
+        while(ptr2 != ptr1):
+            ptr1 = ptr1.next
+            ptr2 = ptr2.next
+        #last node
+        while (ptr2.next != ptr1):
+            ptr2 =ptr2.next
+        #delete the loop
+        ptr2.next = None
+         
+    #merge two sorted linked lists
+    def mergetwo_SortedLL(self, a:Node, b:Node) -> Node:
+        #define a dummy with next null
+        dummy = Node()
+        tail = dummy
+        while(a and b):
+            if(a.data <= b.data):
+                tail.next = a
+                a = a.next
+            else:
+                tail.next = b
+                b = b.next
+        tail = tail.next
+        #if the loop broke while one of the lists is empty but not all nodes in 2 lists have been merged
+        if (a):
+            tail.next = a
+        else:
+            tail.next = b
+        #new sorted list
+        #go to the next to avoid the 0 node 
+        return dummy.next
+
+
 
     
 
@@ -383,18 +456,19 @@ ll1.deletePostion(4)
 #ll1.print_LL()
 #ll1.getMiddleNode()
 #ll1.getNthNodeEnd(2)
-ll1.insertPosition(2,6)
-ll1.insertPosition(5,12)
+#ll1.insertPosition(2,6)
+#ll1.insertPosition(5,12)
 #ll1.print_LL()
 #remove duplicates
-ll1.removeDuplicateNodes()
+#ll1.removeDuplicateNodes()
 #ll1.print_LL()
-ll1.insertSorted_LL(7)
+#ll1.insertSorted_LL(7)
 #ll1.print_LL()
 #a linked list with a loop
+
 ll2 = SLinkedList()
 #head
-ll2.head = Node(0)
+ll2.head = Node(1)
 node2 = Node(2)
 node3 = Node(4)
 node4 = Node(6)
@@ -407,10 +481,21 @@ node2.next = node3
 node3.next = node4
 node4.next = node5
 node5.next = node6
+node6.next = node7
 #loop begins at 3
-node6.next = node3
+node7.next = None
 #ll2.print_LL()
-ll2.detectLoop_LL()
-ll2.detectStartNodeLoop()
+
+"""
+redo delete a loop and detect a loop
+"""
+#ll1.print_LL()
+#ll2.print_LL()
+#merge
+result = SLinkedList()
+result.head = result.mergetwo_SortedLL(ll1.head, ll2.head)
+result.print_LL()
+
+
 
 
