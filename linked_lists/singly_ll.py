@@ -1,6 +1,3 @@
-from turtle import pos
-from requests import head
-
 
 class Node:
        def __init__(self, data=None):
@@ -280,6 +277,33 @@ class SLinkedList:
             else:
                 #loop to the end
                 current = current.next
+    # insert a node in a sorted link list
+    def insertSorted_LL(self,newData):
+        """
+        Description:
+            this function inserts data in the sorted linked list
+        
+        Returns:
+            head of the link list
+        """
+        current = self.head
+        newNode = Node(newData)
+        
+        temp = None
+        if (current is None):
+            return newNode.data
+        else:
+            while(current is not None and current.data < newNode.data):
+                temp = current
+            # temp --> current in a loop till the new node reached
+                current = current.next
+            # the new node's pointer becomes the current
+            # newNode --> current
+            newNode.next = current
+            #the temp now points the the newNode, completing the insertion
+            #temp --> newNode --> current
+            temp.next = newNode
+        return print(self.head.data)
 
 
 
@@ -315,9 +339,11 @@ ll1.deletePostion(4)
 #ll1.getNthNodeEnd(2)
 ll1.insertPosition(2,6)
 ll1.insertPosition(5,12)
-ll1.print_LL()
+#ll1.print_LL()
 #remove duplicates
 ll1.removeDuplicateNodes()
+ll1.print_LL()
+ll1.insertSorted_LL(7)
 ll1.print_LL()
 
 
