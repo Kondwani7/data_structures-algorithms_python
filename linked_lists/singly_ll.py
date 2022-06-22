@@ -468,6 +468,22 @@ class SLinkedList:
         #delete the node
         left = left.next.next
         return dummy.next
+    
+    def removeMiddleNode(self, head: Optional[Node]) -> Optional[Node]:
+        #node before the head
+        dummy = Node(0, head)
+        slowPtr = dummy
+        fastPtr = head
+        while fastPtr and fastPtr.next:
+            #fast pointer moves 2 times
+            fastPtr = fastPtr.next.next
+            #slow pointer moves 1 until it gets to the node before the middle Node
+            slowPtr = slowPtr.next
+        #delete the middle node
+        slowPtr.next = slowPtr.next.next
+        #return the updated list
+        return dummy.next
+    
 
 
 
