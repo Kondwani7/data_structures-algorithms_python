@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 
 class Node:
@@ -452,6 +452,22 @@ class SLinkedList:
             lists = mergedLists
             #return the merged list
             return lists[0]
+    #remove the nth node from a linked list
+    def removeFromNthNode(self, head: Optional[Node], n: int) -> Optional[Node]:
+        #dummy node points at head
+        dummy = Node(0, head)
+        #the left will start at dummy, until it gets to one node before our target
+        left = dummy
+        right = head
+        while n > 0 and right:
+            right = right.next
+            n-=1
+        while right:
+            right = right.next
+            left = left.next
+        #delete the node
+        left = left.next.next
+        return dummy.next
 
 
 
