@@ -1,4 +1,4 @@
-from os import remove
+from typing import List
 
 
 class Node:
@@ -401,6 +401,15 @@ class SLinkedList:
          
     #merge two sorted linked lists
     def mergetwo_SortedLL(self, a:Node, b:Node) -> Node:
+        """
+        Description:
+            This function gets to sorted lists and merges them into one sorted list
+        Args:
+            a - the first list
+            b - the second list
+        Returns:
+            the new merged list
+        """
         #define a dummy with next null
         dummy = Node()
         tail = dummy
@@ -420,6 +429,31 @@ class SLinkedList:
         #new sorted list
         #go to the next to avoid the 0 node 
         return dummy.next
+    #merge k sorted lists
+    def mergeK_SortedLL(self, lists: List[Node]) -> Node:
+        """
+        Description:
+            This function merges k number of sorted lists
+        Returns:
+            The new merged list
+        """
+        #if the lists are empty
+        if not lists or len(lists) == 0:
+            return None
+        #while we have more than one list
+        while len(lists) > 1:
+            mergedLists =  []
+            #the merging is happpening with 2 lists, hence looping by 2
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                #if the len of lists is odd merge list 1 with a None type, which is just l1
+                l2 = lists[i + 1] if (i + 1) < len(lists) else None
+                mergedLists(self.mergetwo_SortedLL(l1, l2))
+            lists = mergedLists
+            #return the merged list
+            return lists[0]
+
+
 
 
 
