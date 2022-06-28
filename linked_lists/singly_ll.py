@@ -483,7 +483,17 @@ class SLinkedList:
         slowPtr.next = slowPtr.next.next
         #return the updated list
         return dummy.next
-    
+
+    #leetcode and hashmaps
+    #detect start of loop
+    def detectCycle(self, head: Optional[Node]) -> Optional[Node]:
+        visited = set()
+        while head:
+            if head in visited:
+                return head
+            visited.add(head)
+            head = head.next
+        return None
 
 
 
