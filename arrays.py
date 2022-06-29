@@ -47,3 +47,15 @@ for i in range(0 ,6):
 print("reversed array")
 #search array
 print(f"third element in array: {a.index(3)}")
+print(f"length of array: {len(a)}")
+#remove even elements in a array
+def remove_even(x):
+    for i in x[:]:
+        if (i%2) == 0:
+            x.remove(i)
+            i+=1
+    return x
+
+arr3 = [3, 5, 7, 8, 3, 12, 3]
+arr3
+print(remove_even(arr3))
