@@ -1,4 +1,5 @@
 import array as arr
+from typing import List
 
 a = arr.array('i',[1,2,3])
 for i in range(0, 3):
@@ -119,3 +120,13 @@ def getSecondMax(arr, arr_size):
         return
 
 getSecondMax(arr5, arr5_length)
+print([4,5])
+#leet code
+#remove duplicates in a list
+class solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        k = 1
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i-1]:
+                nums[k] = nums[i]
+        return k
