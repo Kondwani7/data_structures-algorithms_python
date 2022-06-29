@@ -130,3 +130,11 @@ class solution:
             if nums[i] != nums[i-1]:
                 nums[k] = nums[i]
         return k
+#remove an elemnt
+class solution2:
+    def  removeElement(self, nums: List[int], val:int) -> int:
+        k = 0
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[k] = nums[i]
+        return k
