@@ -59,3 +59,13 @@ def remove_even(x):
 arr3 = [3, 5, 7, 8, 3, 12, 3]
 arr3
 print(remove_even(arr3))
+#remove odd
+def remove_odd(x):
+    for i in x[:]:
+        if (i%2) != 0:
+            x.remove(i)
+            i+=1
+    return x
+
+arr4 = [3, 22, 4 ,55, 17, 559, 2 ,8]
+print(remove_odd(arr4))
