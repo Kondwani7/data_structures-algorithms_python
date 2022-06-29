@@ -94,9 +94,28 @@ def getMinMax(arr: list, n: int) -> pair:
             minmax.min = arr[i]
     return minmax
 
-arr5 = [39, 2 , 44, 22, -4, -22, 45, 22, 12 , 88, 44, 44,  9, 17, 33]
+arr5 = [39, 2 , 44, 22, -4, -22, 45, 22, 12 ,64, 88, 44, 44,  9, 17, 33]
+#sort array
+#arr5.sort()
+#print(arr5)
 arr5_length = len(arr5)
 
 minmax_arr5 = getMinMax(arr5, arr5_length)
 print(f"The minimum element in the array is: {minmax_arr5.min}")
 print(f"The maximum element in the array is: {minmax_arr5.max}")
+
+#find the second largest element in the array
+def getSecondMax(arr, arr_size):
+    #if only one element in the array
+    if (arr_size < 2):
+        return arr
+    #first sort the array
+    arr.sort()
+    #get from second last in the list
+    for i in range(arr_size - 2, -1, -1):
+        #if not the second largest element
+        if arr[i] != arr[arr_size - 1]:
+            print(f"second largest element: {arr[i]}")
+        return
+
+getSecondMax(arr5, arr5_length)
