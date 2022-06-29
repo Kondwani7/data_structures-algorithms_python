@@ -53,7 +53,6 @@ def remove_even(x):
     for i in x[:]:
         if (i%2) == 0:
             x.remove(i)
-            i+=1
     return x
 
 arr3 = [3, 5, 7, 8, 3, 12, 3]
@@ -64,8 +63,40 @@ def remove_odd(x):
     for i in x[:]:
         if (i%2) != 0:
             x.remove(i)
-            i+=1
     return x
 
 arr4 = [3, 22, 4 ,55, 17, 559, 2 ,8]
 print(remove_odd(arr4))
+#min max as a pair
+class pair:
+    def __init__(self):
+        self.min = 0
+        self.max = 0
+#get the minimum and maximum
+def getMinMax(arr: list, n: int) -> pair:
+    minmax = pair()
+    #if only 1 element
+    if n ==1:
+        minmax.max = arr[0]
+        minmax.min = arr[0]
+    #if more than one element
+    if arr[0] > arr[1]:
+        minmax.max = arr[0]
+        minmax.min = arr[1]
+    else:
+        minmax.max = arr[1]
+        minmax.min = arr[0]
+    #more than 2 elements
+    for i in range(2, n):
+        if arr[i] > minmax.max:
+            minmax.max = arr[i]
+        elif arr[i] < minmax.min:
+            minmax.min = arr[i]
+    return minmax
+
+arr5 = [39, 2 , 44, 22, -4, -22, 45, 22, 12 , 88, 44, 44,  9, 17, 33]
+arr5_length = len(arr5)
+
+minmax_arr5 = getMinMax(arr5, arr5_length)
+print(f"The minimum element in the array is: {minmax_arr5.min}")
+print(f"The maximum element in the array is: {minmax_arr5.max}")
