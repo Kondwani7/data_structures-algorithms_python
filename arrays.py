@@ -138,3 +138,15 @@ class solution2:
             if nums[i] != val:
                 nums[k] = nums[i]
         return k
+#two sum
+class solution3:
+    def twoSum(self, nums, target):
+        #hash map
+        prevMap = {}
+        for i, j in enumerate(nums):
+            diff = target - j
+            if diff in prevMap:
+                return [prevMap[diff], i]
+            #if the target is not in the hashmap
+            prevMap[j] = i
+        return
