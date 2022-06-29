@@ -45,3 +45,5 @@ reversed_arr = a[::-1]
 for i in range(0 ,6):
     print(reversed_arr[i], end=" ")
 print("reversed array")
+#search array
+print(f"third element in array: {a.index(3)}")
