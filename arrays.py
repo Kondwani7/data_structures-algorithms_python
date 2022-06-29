@@ -150,3 +150,25 @@ class solution3:
             #if the target is not in the hashmap
             prevMap[j] = i
         return
+#three sum nums[i] + nums[j] nums[k] == 0 in a array
+class solution4:
+    def threeSum(self, nums: List[int]) -> int:
+        res = []
+        nums.sort()
+        for i, j in enumerate(nums):
+            if i > 0 and j == nums[i-1]:
+                continue
+            l, r = i+1, len(nums) -1
+            while l< r:
+                threeSum = j + nums[i] + nums[r]
+                if threeSum > 0:
+                    r-= 1
+                elif threeSum < 0:
+                    l +=1
+                else:
+                    res.append([j, nums[l], nums[r]])
+                    #iterate through out the list
+                    l+=1
+                    while nums[l] == nums[l-1] and l<r:
+                        l+=1
+        return res
