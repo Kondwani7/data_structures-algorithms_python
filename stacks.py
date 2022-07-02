@@ -71,3 +71,21 @@ for i in range(1,6):
     remove = stack3.pop()
     print(f"popping: {remove}")
 print(f"stack3 popped: {stack3}")
+
+#reverse a string
+def reverse(s):
+    str1 = ""
+
+    for i in s:
+        str1 = i+ str1
+    return str1
+    
+
+print(reverse("geeks"))
+#reverse a string with recursion
+def reverse_rec(s):
+    if len(s) == 0:
+        return s
+    else:
+        return reverse(s[1:] + s[0])
+print(reverse_rec("quacks"))
