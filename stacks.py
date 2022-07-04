@@ -1,6 +1,7 @@
 #LIFO
 from collections import deque
 from inspect import stack
+from typing import List
 
 
 stack1 = []
@@ -115,3 +116,20 @@ def reverse_stack(string):
     return string
 
 print(reverse_stack("ddede"))
+#leet code
+#find next greater element
+def nextGreaterElement(self, nums1: List[int], nums2:List[int]) -> List[int]:
+    nums1Idx = {n:i for i, n in enumerate(nums1)}
+    res = -1 * len(nums1)
+    stack = []
+    for i in range(len(nums2)):
+        cur = nums2[i]
+        while stack and cur > stack[-1]:
+            val = stack.pop()
+            #popped value index
+            idx = nums1Idx[val]
+            #next greater element index
+            res[idx] =  cur
+        if cur in nums1Idx:
+            stack.append(curr)
+    return res
