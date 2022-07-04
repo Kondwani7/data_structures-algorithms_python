@@ -216,3 +216,17 @@ def maxProfit(self, prices: List[int]) -> List[int]:
         #keep looping to end
         r+=1
     return maxP
+#max profit 2
+def maxProfitII(self, prices: List[int]) -> List[int]:
+    """
+    similar to the last 1 but you can buy and sell multiple times to get the sum of the max profit
+    e.g [ 4, 7, 6, 1, 3, 9]
+    max profit =(7-4)+ (9-1) = 11
+    """
+    profit = 0
+    for i in range(1, len(prices)):
+        #compare 2 elements against each other
+        if prices[i] > prices[i-1]:
+            #iteratively update until we get the max sum profit
+            profit += prices[i] - prices[i-1]
+    return profit
