@@ -139,7 +139,7 @@ def nextGreaterElement(self, nums1: List[int], nums2:List[int]) -> List[int]:
         if cur in nums1Idx:
             stack.append(cur)
     return res
-#next greatereleemtn 2
+#next greater element 2
 def nextGreaterElementII(self, nums:List[int]) -> List[int]:
     """
     similar to the last question, but for the last element loop back on the list to find the next greater  element
@@ -158,3 +158,25 @@ def nextGreaterElementII(self, nums:List[int]) -> List[int]:
             res[val] = curr
         stack.append(curr)
     return res
+#valid parthesis
+def isValid(self, s: str)-> bool:
+    """
+    check if 2 opening and closing string compared match
+    e.g { } = true, {] false
+    """
+    #solution O(n)
+    stack = []
+    #hashmap -> king
+    closeToOpen = {")":"(", "]":"[","}":"{"}
+    for c in s:
+        if c in closeToOpen:
+            #if stack if valid and the compared strings match
+            if stack and stack[-1] == closeToOpen[c]:
+                stack.pop()
+                continue
+            else:
+                return False
+        #if we get more of the same opening character
+        else:
+            stack.append(c)
+    return  True if not stack else False
