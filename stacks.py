@@ -119,6 +119,12 @@ print(reverse_stack("ddede"))
 #leet code
 #find next greater element
 def nextGreaterElement(self, nums1: List[int], nums2:List[int]) -> List[int]:
+    """
+    in a array, compare one element with its next greater element,
+    if not found = -1
+    e.g [1, 4, 5, 1, 3]
+    next greater element  = [4, 5, -1, 3, -1]
+    """
     nums1Idx = {n:i for i, n in enumerate(nums1)}
     res = -1 * len(nums1)
     stack = []
@@ -131,5 +137,24 @@ def nextGreaterElement(self, nums1: List[int], nums2:List[int]) -> List[int]:
             #next greater element index
             res[idx] =  cur
         if cur in nums1Idx:
-            stack.append(curr)
+            stack.append(cur)
+    return res
+#next greatereleemtn 2
+def nextGreaterElementII(self, nums:List[int]) -> List[int]:
+    """
+    similar to the last question, but for the last element loop back on the list to find the next greater  element
+    e.g [1, 4, 5, 1, 3]
+    next greater element  = [4, 5, -1, 3, 4]
+    """
+    res = -1 * len(nums)
+    size = len(nums)
+    stack = []
+    #double it to loop through the list twice
+    for i in list(range(size)) * 2:
+        curr = nums[i]
+        if stack and curr > nums[stack[-1]]:
+            val = stack.pop()
+            #next greater element
+            res[val] = curr
+        stack.append(curr)
     return res
