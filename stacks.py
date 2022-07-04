@@ -196,3 +196,23 @@ def maxProduct(self, nums: List[int]) -> List[int]:
         currMin = min(tmp,n * currMin, n )
         res = max(res, currMax)
     return res
+#best time to buy a stock 2
+def maxProfit(self, prices: List[int]) -> List[int]:
+    """
+    given a list of stock prices find the max profit = optimal time to buy and sell = buy low sell high
+    e.g [ 4, 7, 6, 1, 3, 9]
+    max profit = 9 -1 = 8
+    """
+    maxP = 0
+    #two pointers  l = buy, r = sell
+    l, r = 0
+    while r < len(prices):
+        if prices[r] > prices[l]:
+            profit = prices[r] - prices[l]
+            maxP = max(profit, maxP)
+        #else if not found on list
+        else:
+            l = r
+        #keep looping to end
+        r+=1
+    return maxP
