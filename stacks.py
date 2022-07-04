@@ -180,3 +180,19 @@ def isValid(self, s: str)-> bool:
         else:
             stack.append(c)
     return  True if not stack else False
+#max product in subarray
+def maxProduct(self, nums: List[int]) -> List[int]:
+    """
+    find the maximum product of to values in a array
+    e.g [3, -2, 33, 2, 4]
+    33 * 4 = 132
+    """
+    res = max(nums)
+    currMax, currMin = 1, 1
+    for n in nums:
+        tmp = n * currMax
+        #update the max and min of each value
+        currMax = max(tmp,n * currMin, n )
+        currMin = min(tmp,n * currMin, n )
+        res = max(res, currMax)
+    return res
