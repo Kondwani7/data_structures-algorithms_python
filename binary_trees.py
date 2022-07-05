@@ -29,6 +29,15 @@ class Node:
         print(self.data)
         if self.right:
             self.right.PrintTree()
+    #inorder traversal
+    # left -> root -> right
+    def inOrderTraversal(self, root):
+        res = []
+        if root:
+            res = self.inOrderTraversal(root.left)
+            res.append(root.data)
+            res = res + self.inOrderTraversal(root.right)
+        return res
 
 
 bt1 = Node(21)
@@ -38,4 +47,5 @@ bt1.insert(22)
 bt1.insert(23)
 bt1.insert(24)
 bt1.insert(16)
-bt1.PrintTree()
+#bt1.PrintTree()
+print(bt1.inOrderTraversal(bt1))
