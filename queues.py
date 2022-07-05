@@ -40,3 +40,19 @@ print("elements in queue 3")
 print(q3.get())
 print(q3.get())
 print("\nFull", q3.full())
+#element as stack using queues
+class Q:
+    def __init__(self):
+        self.q = deque()
+
+    def push(self, x: int) -> None:
+        self.q.append(x)
+    #pop
+    def pop(self) -> int:
+        pass
+    #top
+    def top(self):
+        return self.q[-1]
+    #check if empty
+    def isEmpty(self):
+        return len(self.q) == 0
