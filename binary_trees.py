@@ -1,6 +1,5 @@
 #tree has a left andr right nodes
 from collections import deque
-import queue
 
 
 class Node:
@@ -92,24 +91,93 @@ class Node:
             res.append(currList)
         return res
 
-bt1 = Node(21)
-bt1.insert(19)
-bt1.insert(18)
-bt1.insert(22)
-bt1.insert(23)
-bt1.insert(24)
-bt1.insert(16)
-bt1.insert(32)
-bt1.insert(14)
-bt1.insert(34)
-bt1.insert(13)
-bt1.insert(38)
-bt1.insert(11)
-#bt1.PrintTree()
-print("preorder traversal: ",bt1.inOrderTraversal(bt1))
-#in order traversal
-print("preorder traversal: ", bt1.preOrderTraversal(bt1))
-#post order traversal
-print("post order traversal: ", bt1.postOrderTraversal(bt1))
-#level order traversal
-print("level order traversal: ", bt1.levelOrderTraversal())
+#find maximum in binary tree
+def findMax(root):
+    if root is None:
+        return
+    res = root.data
+    lres = findMax(root.left)
+    rres = findMax(root.right)
+    if lres > rres:
+        res = lres
+    if rres > lres:
+        res = rres
+    return res
+def findMin(root):
+    if root is None:
+        return
+    res = []
+    res = root.data
+    lres = findMin(root.left)
+    rres = findMin(root.right)
+    if lres < rres:
+        res = lres
+    if rres < lres:
+        res = rres
+    return res
+
+if __name__ == '__main__':
+    bt1 = Node(21)
+    bt1.insert(19)
+    bt1.insert(18)
+    bt1.insert(22)
+    bt1.insert(23)
+    bt1.insert(24)
+    bt1.insert(16)
+    bt1.insert(32)
+    bt1.insert(14)
+    bt1.insert(34)
+    bt1.insert(13)
+    bt1.insert(38)
+    bt1.insert(11)
+    #bt1.PrintTree()
+    print("preorder traversal: ",bt1.inOrderTraversal(bt1))
+    #in order traversal
+    print("preorder traversal: ", bt1.preOrderTraversal(bt1))
+    #post order traversal
+    print("post order traversal: ", bt1.postOrderTraversal(bt1))
+    #level order traversal
+    print("level order traversal: ", bt1.levelOrderTraversal())
+
+
+class binarySearchTree:
+    def __init__(self, data):
+        self.left =  None
+        self.right = None
+        self.data = data
+    # insert the data
+    def insert(self, data):
+        if self.data:
+            if data < self.data:
+                if self.left is None:
+                    self.left = binarySearchTree(data)
+                else:
+                    self.left.insert(data)
+            if data > self.data:
+                if self.right is None:
+                    self.right = binarySearchTree(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.data = data
+    #compare value with nodes
+    def findVal(self, compareVal):
+        if compareVal < self.data:
+            if self.left is None:
+                return str(compareVal) + "not found"
+            return self.left.findVal(compareVal)
+        elif compareVal > self.data:
+            if self.right is None:
+                return str(compareVal) + "Not found"
+            return self.right.findVal(compareVal)
+        else:
+            print(str(self.data) + " found")
+
+bst1 = binarySearchTree(7)
+bst1.insert(1)
+bst1.insert(3)
+bst1.insert(5)
+bst1.insert(9)
+bst1.insert(11)
+bst1.insert(13)
+print(bst1.findVal(7))
