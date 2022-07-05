@@ -47,6 +47,15 @@ class Node:
             res = res + self.preOrderTraversal(root.left)
             res = res + self.preOrderTraversal(root.right)
         return res
+    #post order traversal
+    #left -> right -> root
+    def postOrderTraversal(self, root):
+        res = []
+        if root:
+            res = self.postOrderTraversal(root.left)
+            res = res + self.postOrderTraversal(root.right)
+            res.append(root.data)
+        return res
 bt1 = Node(21)
 bt1.insert(19)
 bt1.insert(18)
@@ -58,3 +67,5 @@ bt1.insert(16)
 print("preorder traversal: ",bt1.inOrderTraversal(bt1))
 #in order traversal
 print("preorder traversal: ", bt1.preOrderTraversal(bt1))
+#post order traversal
+print("post order traversal: ", bt1.postOrderTraversal(bt1))
