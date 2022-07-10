@@ -72,6 +72,7 @@ class Node:
         res = []
         if root is None:
             return res
+        res
 
         q = deque()
         q.append(root)
@@ -131,7 +132,7 @@ if __name__ == '__main__':
     bt1.insert(38)
     bt1.insert(11)
     #bt1.PrintTree()
-    print("preorder traversal: ",bt1.inOrderTraversal(bt1))
+    print("inorder traversal: ",bt1.inOrderTraversal(bt1))
     #in order traversal
     print("preorder traversal: ", bt1.preOrderTraversal(bt1))
     #post order traversal
