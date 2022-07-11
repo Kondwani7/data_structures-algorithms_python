@@ -8,7 +8,9 @@ class MinHeap:
             for i in range(len(self.heap))[::-1]:
                 #shift it down to to get the min heap
                 self.siftdown(i)
-    
+    #print heap
+    def printHeap(self):
+        return print(self.heap)
     def siftup(self, i):
         """
         this function will traverse through a heap
@@ -105,4 +107,14 @@ class MinHeap:
         """
         if old in self.heap:
             self.update_by_index(self.heap.index(old), new)
-    
+
+hp1 = MinHeap()
+hp1.insert(1)
+hp1.insert(4)
+hp1.insert(3)
+hp1.insert(15)
+hp1.insert(8)
+hp1.insert(3)
+hp1.insert(12)
+hp1.insert(6)
+hp1.printHeap()
