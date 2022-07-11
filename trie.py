@@ -17,4 +17,13 @@ class Trie:
             node = node.children[ch]
             #end string
         node.is_end= True
-    
+    #searching in a trie node
+    def search(self, s):
+        node = self
+        for ch in s:
+            if ch not in node.children:
+                return None
+            #set node to its childern and we continue
+            node = node.children[ch]
+        #return the node ch in the string
+        return node if node.is_end else None
