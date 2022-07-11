@@ -12,8 +12,9 @@ class MinHeap:
     def siftup(self, i):
         """
         this function will traverse through a heap
-        it will sift up (swap) values smaller with the ones above it
-        until a heap structure is created
+        description:
+            - it will sift up (swap) values smaller with the ones above it
+            - until a heap structure is created
         """
         #or root of tree
         parent = (i -1) //2
@@ -27,8 +28,9 @@ class MinHeap:
     def siftdown(self, i):
         """
         this function will traverse a heap
-        it sift dow (swap) values larger than the ones below it
-        until a heap structure is created
+            description:
+            - it sift dow (swap) values larger than the ones below it
+            - until a heap structure is created
         """
         #left and right of heap
         left = 2*i + 1
@@ -46,6 +48,12 @@ class MinHeap:
             right = 2*i + 2
     #insert in a heap
     def insert(self, element):
+        """
+        this function inserts an element in a list
+        description:
+            - add element to end of list
+            - then sift up until we have a heap
+        """
         self.heap.append(element)
         #siftup through the list until we have a heap
         self.siftup(len(self.heap) -1)
@@ -58,8 +66,9 @@ class MinHeap:
     def extract_min(self):
         """
         this function will get the minimum and remove it from the list
-        find the min(top), swap with the bottom of the heap, pop it
-        then sift down or new first element self.heap[0] to make the array a heap again
+        Description:
+            - find the min(top), swap with the bottom of the heap, pop it
+            - then sift down or new first element self.heap[0] to make the array a heap again
         """
         if len(self.heap) == 0:
             return None
@@ -72,4 +81,28 @@ class MinHeap:
         self.siftdown(0)
         #return our min
         return minval
+    #update by a specif index
+    def update_by_index(self, i ,new):
+        """
+        this function will replace a value with new at index i
+        description:
+            - if the new value is smaller than old, sift up
+            - if he new value is greater than old, sift down
+        """
+        old = self.heap[i]
+        self.heap[i] = new
+        if new < old:
+            self.siftup(i)
+        else:
+            self.siftdown(i)
+    #update
+    def update(self, old ,new):
+        """
+        this function will update a old value with a new value
+        description:
+            - get the index of the old value, and replace with the new function
+            - use our update_by_index function
+        """
+        if old in self.heap:
+            self.update_by_index(self.heap.index(old), new)
     
