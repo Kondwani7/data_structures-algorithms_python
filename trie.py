@@ -27,3 +27,34 @@ class Trie:
             node = node.children[ch]
         #return the node ch in the string
         return node if node.is_end else None
+    #deleting a word from a trie
+    def delete(self, s):
+        #start processing the deletion from the bottom of trie not top
+        #to avoid deleting non target words with a similar prefix to target word
+        def rec(node, s, i):
+            if i == len(s):
+                node.is_end = False
+                return len(node.children) == 0
+            else:
+                #recursive deletion from bottom
+                next_deletion = rec(node.children[s[i]],s, i+1)
+                if next_deletion:
+                    del node.children[s[i]]
+                return next_deletion and not node.is_end and len(node.children) == 0
+        #if word found in our trie we perform the deletion
+        if self.search(s):
+            rec(self, s, 0)
+    #get substrings (words) of a trie
+    def get_substrings(self):
+        def rec(node, string, strings):
+            #if we are at the end of the list
+            if node.is_end:
+                strings.append("".join(string))
+            #only for characters in our trie
+            for ch in node.children:
+                string.append(ch)
+                rec(node.children[ch], string, strings)
+                string.pop()
+        strings = []
+        rec (self, [], strings)
+        return strings
