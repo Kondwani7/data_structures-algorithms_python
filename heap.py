@@ -179,3 +179,12 @@ class MaxHeap:
     def update(self, old, new):
         if old in self.heap:
             self.update_by_index(self.heap.index(old), new)
+#heap sort
+def heapsort(arr):
+    heap = MinHeap(arr)
+    return [heap.extract_min() for i in range(len(heap.heap))]
+
+#priority queue a max heap
+class PriorityQueue:
+    def __init__(self) -> None:
+        pass
