@@ -15,7 +15,14 @@ class MinHeap:
         it will sift up (swap) values smaller with the ones above it
         until a heap structure is created
         """
-        pass
+        #or root of tree
+        parent = (i -1) //2
+        #from parent going down
+        while i!= 0 and self.heap[i] < self.heap[parent]:
+            #swap values i smaller than parent until a heap is created
+            self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
+            i = parent
+            parent = (i -1) //2
 
     def siftdown(self, i):
         """
