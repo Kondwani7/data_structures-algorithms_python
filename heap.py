@@ -44,3 +44,8 @@ class MinHeap:
             #reset left and right
             left = 2*i + 1
             right = 2*i + 2
+    #insert in a heap
+    def insert(self, element):
+        self.heap.append(element)
+        #siftup through the list until we have a heap
+        self.siftup(len(self.heap) -1)
