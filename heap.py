@@ -1,4 +1,7 @@
 #a min heap the top value is the smallest and traversing (sifting) down the heap the values increasing
+from requests import head
+
+
 class MinHeap:
     def __init__(self, arr=None):
         self.heap = []
@@ -118,3 +121,61 @@ hp1.insert(3)
 hp1.insert(12)
 hp1.insert(6)
 hp1.printHeap()
+#max heap the largest value is at the top: start of heap
+class MaxHeap:
+    def __init__(self, arr:None):
+        self.heap = []
+        if type(arr) is list:
+            self.heap == arr.copy()
+            for i in range(len(self.heap))[::-1]:
+                self.siftdown(i)
+
+    def siftup(self, i):
+        parent = (i -1)//2
+        #opposite of minheap if i is greater than parent, sift up (swap)
+        while i!=0 and self.heap[i] > self.heap[parent]:
+            self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
+            i = parent
+            parent = (i - 1)//2
+    
+    def siftdown(self, i):
+        left = 2* i + 2
+        right = 2* i + 2
+        #opposite while i is smalle than left or right
+        while (left < len(self.heap) and self.heap[i] < self.heap[left]) or (right < len(self.heap) and self.heap[i] < self.heap[right]):
+            #biggest between left or right
+            biggest = left if (right >= len(self.head) or self.heap[left] > self.heap[right]) else right
+            #swap left and right
+            self.heap[i], self.heap[biggest] = self.heap[biggest], self.heap[i]
+            i = biggest
+            left = 2 * i + 1
+            right = 2* i + 2
+    #insertion
+    def insert(self,element):
+        self.heap.append(element)
+        #sift up the whole list till its a heap
+        self.heap(len(self.heap) -1)
+    #def get max
+    def get_max(self):
+        return self.heap[0] if self.heap else None
+    #extract max
+    def extract_max(self):
+        if not self.heap:
+            return None
+        maxval = self.heap[0]
+        self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
+        self.heap.pop()
+        self.siftdown(0)
+        return maxval
+    #update by index
+    def update_by_index(self, i , new):
+        old = self.heap[i]
+        self.heap[i] = new
+        if new > old:
+            self.siftup(i)
+        else:
+            self.siftdown(i)
+    #update
+    def update(self, old, new):
+        if old in self.heap:
+            self.update_by_index(self.heap.index(old), new)
