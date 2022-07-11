@@ -53,3 +53,23 @@ class MinHeap:
     #easier because we are just getting the first element
     def get_min(self):
         return self.heap[0] if len(self.help) > 0 else None
+    #extract the min
+    #we have to not only get it, but remove it from the heap
+    def extract_min(self):
+        """
+        this function will get the minimum and remove it from the list
+        find the min(top), swap with the bottom of the heap, pop it
+        then sift down or new first element self.heap[0] to make the array a heap again
+        """
+        if len(self.heap) == 0:
+            return None
+        minval = self.heap[0]
+        #swap with last element
+        self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
+        #pop the old min value
+        self.heap.pop()
+        #sift down the first element till we have a heap
+        self.siftdown(0)
+        #return our min
+        return minval
+    
