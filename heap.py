@@ -49,3 +49,7 @@ class MinHeap:
         self.heap.append(element)
         #siftup through the list until we have a heap
         self.siftup(len(self.heap) -1)
+    #get the min
+    #easier because we are just getting the first element
+    def get_min(self):
+        return self.heap[0] if len(self.help) > 0 else None
