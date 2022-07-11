@@ -24,5 +24,6 @@ def quicksort(l, r, nums):
         quicksort(pi+ 1, l, nums)
     return nums
 
-arr1 = [3, 45, 67, 2, 0 , 8, -4 , 23]
-print(quicksort(0, len(arr1) -1, arr1))
+arr1 = [3, 45, 67, 2, 0 , 8, -4 , 23, 7, 12, 13]
+print("initial array:", arr1)
+print("quicksort:", quicksort(0, len(arr1) -1, arr1))
