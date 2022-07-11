@@ -182,7 +182,12 @@ class MaxHeap:
 #heap sort
 def heapsort(arr):
     heap = MinHeap(arr)
-    return [heap.extract_min() for i in range(len(heap.heap))]
+    return print("heapified array:", [heap.extract_min() for i in range(len(heap.heap))])
+
+
+arr1 = [3, 42, 5, 8, 12, 3, 9, 15, 67, 12]
+print("inital array:", arr1)
+heapsort(arr1)
 
 #priority queue a max heap
 class PriorityQueue:
