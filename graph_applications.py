@@ -73,6 +73,47 @@ class Graph:
                 self.topologicalSortUtil(i, visited, stack)
         #print stack
         print(stack[::-1])
+    #topological sort BFS -> kahn's algorithm
+    #steps - find number of indegree => incoming edges/ not visted
+    #pick vertices wwth indegree 0 and enqueue add to our initialize queue
+    #remove vertex from queue -dequeue
+        # increase ccount of visited nodes-> decrease by in-degree 1 -> in-degree neighbors if 0 enqueue to our queue
+    #repeat last step on queue is empty
+    #if no of visised nodes != nodes in graph topological sort is not possible
+    #Time => O(v + e) numbers vertices + edges
+    def topologicalSortBFS(self):
+        in_degree = [0] * self.V
+        #traverse graph to find indegrees of all vetices
+        for i in self.graph:
+            for j in self.graph[i]:
+                in_degree[j] += 1
+        queue = []
+        for i in range(self.V):
+            if in_degree[i] == 0:
+                queue.append(i)
+        #count of visited nodes
+        #store of the topological sort
+        ans = []
+        count = 0
+        while queue:
+            #store the popped value from list in variable
+            u = queue.pop()
+            ans.append(u)
+            #visit our nodes in the graph based on node u
+            for i in self.graph[u]:
+                #reduce in_degree - visited by 1
+                in_degree[i] -= 1
+                #if our neighbors are not visited indgree- 0 , add to our queue
+                if in_degree[i] == 0:
+                    queue.append(i)
+            #increment count to keep track of NO. of visited nodes
+            count +=1
+        #if count is less than number of nodes in graph
+        if count != self.V:
+            print("there is a cycle in graph. Topological sort not possible")
+        else:
+            print(ans)
+
 
 print("DFS recursive")
 g1 = Graph(4)
@@ -86,7 +127,7 @@ g1.DFS()
 print("BFS")
 g1.BFS(0)
 g2 = Graph(6)
-print("topological sort")
+print("topological sort DFS")
 g2.add_edge(5, 2)
 g2.add_edge(5, 0)
 g2.add_edge(4,0)
@@ -95,3 +136,6 @@ g2.add_edge(2,3)
 g2.add_edge(3,1)
 g1.topologicalSort()
 g2.topologicalSort()
+print("topological sort BFS")
+g1.topologicalSortBFS()
+g2.topologicalSortBFS()
