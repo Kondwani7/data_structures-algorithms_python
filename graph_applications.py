@@ -12,6 +12,12 @@ class Graph:
         self.V = vertices
     #add an edge
     def add_edge(self, u, v):
+        """
+        this function connects edges to 2 points in a graph
+        args:
+            - u: source vertex
+            - v: destinatin vertex
+        """
         self.graph[u].append(v)
     #this will be used by DFS
     def DFSUtil(self, v, visited):
@@ -34,7 +40,7 @@ class Graph:
             s - the starting point of traversal
         """
         #mark all vertices not visited
-        visited = [False] * (max(self.graph) + 1)
+        visited = [False] * self.V
         #use queues FIFO
         queue = []
         queue.append(s)
@@ -114,7 +120,6 @@ class Graph:
         else:
             print(ans)
 
-
 print("DFS recursive")
 g1 = Graph(4)
 g1.add_edge(0, 1)
@@ -139,3 +144,59 @@ g2.topologicalSort()
 print("topological sort BFS")
 g1.topologicalSortBFS()
 g2.topologicalSortBFS()
+#shortest path - unweighed (Bell Ford) and weighed graph/ dijkstra's algorithm
+#for shortest path unweight BFS traversal is ideally the best because all the earliest nodes are visited first
+#first intialize array not visited
+#initialize array dist = [] source vertex .. targret vertex & in essence the path to get to target vertext from source -shortest
+#time => O(v+ e)
+#forming a edge
+def build_graph():
+    edges = [
+        ['A', 'B'], ['A', 'E'],
+        ['A', 'C'], ['B', 'D'],
+        ['B', 'E'], ['C', 'F'],
+        ['C', 'G'], ['D', 'E']
+    ]
+    graph = defaultdict(list)
+
+    for edge in edges:
+        a, b = edge[0], edge[1]
+        graph[a].append(b)
+        graph[b].append(a)
+    return graph
+
+g3 = build_graph()
+print("graph 3 built for testing shortest path")
+print(g3)
+#shortest path
+def shortest_pathBFS(graph, start, goal):
+    #distance to goal
+    dist = []
+    #queue to traverse graph
+    queue = [[start]]
+    if start == goal:
+        print("same node is the shortest path")
+        return
+    while queue:
+        path = queue.pop()
+        #last element
+        node = path[-1]
+
+        if node not in dist:
+            neighbors = graph[node]
+            for neighbor in neighbors:
+                new_path = list(path)
+                #if we don't find it keep appending neighbor to our new path
+                new_path.append(neighbor)
+                #eneque the new path to our queue
+                queue.append(new_path)
+                #if we get to the goal
+                if neighbor == goal:
+                    print("shortest path: ", *new_path)
+                    return
+            dist.append(node)
+    #if nodes are not connected, we can't find the shortest path
+    print("nodes not connected, shortest path not found")
+    return
+
+shortest_pathBFS(g3, 'A', 'F')
