@@ -6,7 +6,7 @@ class Trie:
         self.children = {}
         self.is_end = is_end
     #inserting in a trie
-    def inser(self, s):
+    def insert(self, s):
         node = self
         #for a character in a string
         for ch in s:
@@ -53,7 +53,9 @@ class Trie:
             #only for characters in our trie
             for ch in node.children:
                 string.append(ch)
+                #recursivly record it and append it to strings
                 rec(node.children[ch], string, strings)
+                #after finding string pop
                 string.pop()
         strings = []
         rec (self, [], strings)
