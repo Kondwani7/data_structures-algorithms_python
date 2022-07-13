@@ -199,4 +199,69 @@ def shortest_pathBFS(graph, start, goal):
     print("nodes not connected, shortest path not found")
     return
 
-shortest_pathBFS(g3, 'A', 'F')
+
+    
+
+shortest_pathBFS(g3, 'B', 'G')
+#using adjaceny matrix just for dijkstra
+class GraphM:
+    def __init__(self, vertices):
+        self.V = vertices
+        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
+    
+    def printAns(self, dist):
+        print("vertex \t distance from source")
+        for node in range(self.V):
+            print(node, "\t\t", dist[node])
+    #function to find vertex closest(min distance) from a given set of vertexs
+    #will be used in our shortest path tree
+    def minDistance(self, dist, sptSet):
+        #inital with a high value
+        minVal = 1e7
+        #search for nearest vertex not in the shortest path tree
+        for v in range(self.V):
+            if dist[v] < minVal and  sptSet[v] == False:
+                minVal = dist[v]
+                min_index = v
+        #keep track of this new nearest vertex not in spt
+        return min_index
+
+    def dijkstra(self, src):
+        """
+        #dijkstra - greedy approach, it always picks the vertex closest to the source
+        #use a priority queue to store unvisited vertices from our target distance
+        #it keeps tracks of distances of source to v in a distance table, 
+        #it does not work with weights = -1
+        #this table is created after the kth iteration
+        # in essence it is a sum of shortest path trees
+        """
+        #inital extremely high distance of all vertices in graph
+        dist = [1e7] * self.V
+        dist[src] = 0
+        #nodes not visited-  shortest path tree
+        sptSet = [False] * self.V
+        for count in range(self.V):
+            #get the minimum distance vertex from all unvisited vertices
+            u = self.minDistance(dist, sptSet)
+            #place our minimum distance in the shortest path tree 
+            sptSet[u] = True
+            #update our distance only if the current distance is greater than the new distance
+            #and the vertex is not in our shortest path tree
+            for v in range(self.V):
+                if (self.graph[u][v] > 0 and sptSet[v] == False and dist[v] > dist[u] + self.graph[u][v]):
+                    dist[v] = dist[u] + self.graph[u][v]
+        return self.printAns(dist) 
+
+g4 = GraphM(9)
+g4.graph =  [[0, 4, 0, 0, 0, 0, 0, 8, 0],
+        [4, 0, 8, 0, 0, 0, 0, 11, 0],
+        [0, 8, 0, 7, 0, 4, 0, 0, 2],
+        [0, 0, 7, 0, 9, 14, 0, 0, 0],
+        [0, 0, 0, 9, 0, 10, 0, 0, 0],
+        [0, 0, 4, 14, 10, 0, 2, 0, 0],
+        [0, 0, 0, 0, 0, 2, 0, 1, 6],
+        [8, 11, 0, 0, 0, 0, 1, 0, 7],
+        [0, 0, 2, 0, 0, 0, 6, 7, 0]
+        ]
+
+g4.dijkstra(3)
