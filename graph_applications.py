@@ -119,6 +119,35 @@ class Graph:
             print("there is a cycle in graph. Topological sort not possible")
         else:
             print(ans)
+    #detect a cycle in a graph
+    #dfs is the most ideal a stack to keep track of vertices in recursion
+    #also keep track of nodes visited and their neighbor
+    #function for detech graph
+    def isCyClicUtil(self, v, visited, recStack):
+        #if the visited and recstack is true
+        visited[v] = True
+        recStack[v] = True
+        #visit v's neighbors and if any stack is visited and in the recstack, the graph is cyclic
+        for neighbor in self.graph[v]:
+            #univisted neighbors
+            if visited[neighbor] == False:
+                if self.isCyClicUtil(neighbor, visited, recStack) == True:
+                    return True
+            elif recStack[neighbor] == True:
+                return True
+
+    def isCyCilc(self):
+        visited = [False] * (self.V + 1)
+        #our recording staack
+        recStack = [False] * (self.V + 1)
+        for node in range(self.V):
+            if visited[node] == False:
+                if self.isCyClicUtil(node, visited, recStack) == True:
+                    return True
+        #if no cycle
+        return False
+  
+        
 
 print("DFS recursive")
 g1 = Graph(4)
@@ -265,3 +294,21 @@ g4.graph =  [[0, 4, 0, 0, 0, 0, 0, 8, 0],
         ]
 
 g4.dijkstra(3)
+#detecting cycle in graph test
+g5 = Graph(4)
+g5.add_edge(0,1)
+g5.add_edge(0,2)
+g5.add_edge(1,2)
+g5.add_edge(2, 0)
+g5.add_edge(2, 3)
+g5.add_edge(3, 3)
+print("graph 1")
+if g1.isCyCilc() == 1:
+    print("Graph has a cycle")
+else:
+    print("no cycle")
+print("graph 5")
+if g5.isCyCilc() == 1:
+    print("graph is a cylce")
+else:
+    print("no cycle")
