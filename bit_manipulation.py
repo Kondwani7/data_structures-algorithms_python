@@ -159,3 +159,26 @@ def evenOdd(num):
 evenOdd(5)
 evenOdd(24)
 evenOdd(1125)
+"""
+q3 find the ith bit in a number
+e.g 13 get the 2th bit
+13 in binary is 1101 - the 2th bit: 0
+"""
+def extractIthBit(num, i):
+    """
+    we use a mask spot the ith bith
+    the ith bit can be spotted by left shift ith times 
+    so mask= 1 << i
+    then ith bit is number & mask
+    start counting bits from 0... not 1..
+    """
+    mask = 1 << i
+    num = num & mask
+    if (num > 0):
+        return 1
+    else:
+        return 0
+print("2th bit in 13",extractIthBit(13, 0))
+print("1th bit in 13",extractIthBit(13, 1))
+print("2th bit in 13",extractIthBit(13, 2))
+print("2th bit in 14",extractIthBit(13, 2))
