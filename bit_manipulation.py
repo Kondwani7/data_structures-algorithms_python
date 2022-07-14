@@ -45,7 +45,31 @@ print("base: 0b101010101 -> ", z)
 #compares both numbers x if there is 1 on both then : 1 else 0
 #x -> 0b110010110
 #z -> 0b101010101
+#x & z
 #ans: 0b100010100 -> 0 *(2^0) + 0 *(2^1) + 1 *(2^2) + 0 *(2^3) + 1 *(2^4)
-# 0 *(2^5) + 0 *(2^6) + 0 *(2^7) + 1 *(2^8)  
+# 0 *(2^5) + 0 *(2^6) + 0 *(2^7) + 1 *(2^8)
+# x & z if both are 1 then 1 else 0  
 print("the AND operator of x & z(276):", (x & z))
-
+# OR |
+#x -> 0b110010110
+#z -> 0b101010101
+#ans: 0b111010111 -> 1 * (2*0) + 1 * (2*1) + 1 * (2*2) + 0 * (2*3) + 1 * (2*4)
+#0 * (2*5) + 1 * (2*6) + 1 * (2*7) + 1 * (2*8)
+#x | z if either is 1 then 1 else 0
+print("the OR operator of x & z(276):", (x | z))
+#XOR ^
+#x -> 0b110010110
+#z -> 0b101010101
+#ans: 0b011000011 -> 1 * (2*0) + 1 * (2*1) + 0 * (2*2) + 0 * (2*3) + 0 * (2*4)
+#0 * (2*5) + 1 * (2*6) + 1 * (2*7) + 0 * (2*8)
+#x ^ z if one of them is 1, but not both, then 1 else 0
+print("the XOR operator of x ^ z(276):", (x ^ z))
+#masking
+first_choice = True
+second_choice = False
+third_choice = True
+#5
+choices = 0b101
+print(choices & 0b100) #mask - only le tthe first choice through if its there at all
+print(choices & 0b010) #is second choice set? 2  if so else 0 
+print(choices & 0b001) #is third choice set ? 1 if so else 0
