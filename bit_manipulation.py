@@ -32,7 +32,7 @@ print("1234 in base 10:", (1 * 10**3 + 2 * 10**2 + 3 * 10 **1 + 4 * 10 ** 0 ))
 #e.g 13
 print("1011 in base 2:", (1 * 2 ** 0 + 0 * 2**1 + 1 * 2 ** 2 + 1 * 2 ** 3))
 #e.g
-x = 0b11001011
+x = 0b110010110
 y = 0b10101101
 #ob - start binary
 #remember start from right to left so for z read like: 
@@ -42,4 +42,10 @@ z = 0b101010101
 print(x)
 print(y)
 print("base: 0b101010101 -> ", z)
+#compares both numbers x if there is 1 on both then : 1 else 0
+#x -> 0b110010110
+#z -> 0b101010101
+#ans: 0b100010100 -> 0 *(2^0) + 0 *(2^1) + 1 *(2^2) + 0 *(2^3) + 1 *(2^4)
+# 0 *(2^5) + 0 *(2^6) + 0 *(2^7) + 1 *(2^8)  
+print("the AND operator of x & z(276):", (x & z))
 
