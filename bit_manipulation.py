@@ -5,6 +5,9 @@
 #Bitwise AND (&)OR (|), XOR(^),NOT(!) XOR()
 """
 #functions get a bit
+from os import GRND_RANDOM
+
+
 def getBit(num , i):
     #finds a bit of any given number And -> 1 << i
     return ((num & (1 << i)) != 0)
@@ -73,3 +76,10 @@ choices = 0b101
 print(choices & 0b100) #mask - only le tthe first choice through if its there at all
 print(choices & 0b010) #is second choice set? 2  if so else 0 
 print(choices & 0b001) #is third choice set ? 1 if so else 0
+#more bitwise examples
+def greet():
+    print("hey")
+print("67 in base 2", bin(greet.__code__.co_flags))
+#NOT (~) we think - tiide
+print("bitwise NOT for z:",~z)
+
