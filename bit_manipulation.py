@@ -87,7 +87,7 @@ print("z:",z)
 print("NOT (~)")
 print("~ z:",~z)
 print("binary z:  ",bin(z))
-print("swap the two digits from the right end of binary number")
+print("the ith from the right end of binary number becomes 0")
 print("binary ~z:",bin(~z))
 print("z:",z)
 #mutiply by 2
@@ -198,10 +198,28 @@ def setIthBit(num, i):
     1000
     1101 = ans
     """
-    mask = 1 << i
+    mask = 1 << i 
     num = num | mask
     return num
 print("set 1th bit to 0, new num:",setIthBit(13, 0))
 print("set 1th bit to 1, new num:",setIthBit(13, 1))
 print("set 1th bit to 2, new num:",setIthBit(13, 2))
 print("set 1th bit to 3, new num:",setIthBit(13, 3))
+"""
+q5 set the ith bit in our number to zero
+in essence ,clearing it
+"""
+def clearIthBit(num, i):
+    """
+    get mask = 1 << i
+    NOT operation on mask = ~mask
+    then AND operation on num & mask
+    """
+    mask = 1 << i
+    mask = ~mask
+    num = num & mask
+    return num
+print("clear 0th bit in 13, new num:", clearIthBit(13, 0))
+print("clear 1th bit in 13, new num:", clearIthBit(13, 1))
+print("clear 2th bit in 13, new num:", clearIthBit(13, 2))
+print("clear 3th bit in 13, new num:", clearIthBit(13, 3))
