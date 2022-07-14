@@ -182,3 +182,26 @@ print("2th bit in 13",extractIthBit(13, 0))
 print("1th bit in 13",extractIthBit(13, 1))
 print("2th bit in 13",extractIthBit(13, 2))
 print("2th bit in 14",extractIthBit(13, 2))
+"""
+Q4
+set our ith bit to 1
+still using the mask and left shift <<
+mask = 1 << i
+then use OR |
+"""
+def setIthBit(num, i):
+    """ 
+    define our mask - 1<< i if i = 2 then 100 is mask
+    or operation on mask and number
+    if num is 13 and our ith bit =3 then 
+    1101
+    1000
+    1101 = ans
+    """
+    mask = 1 << i
+    num = num | mask
+    return num
+print("set 1th bit to 0, new num:",setIthBit(13, 0))
+print("set 1th bit to 1, new num:",setIthBit(13, 1))
+print("set 1th bit to 2, new num:",setIthBit(13, 2))
+print("set 1th bit to 3, new num:",setIthBit(13, 3))
