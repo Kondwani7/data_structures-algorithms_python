@@ -129,6 +129,8 @@ def singleNumber(nums):
     """
     use XOR only 1-0 pair gives 1, else 0
     and multiply numbers on list by XOR
+    in list if a number occurs twice its i ^ i which will be 0
+    if a number occurs once its i ^ 0 which will be 1 : our answer
     """
     ans = 0
     for i in nums:
@@ -137,4 +139,23 @@ def singleNumber(nums):
 #test cases
 list1 = [2, 2, 1]
 list2 = [ -1, 0, 0 , -1 , 2, -2, 2]
-print(singleNumber(list2))
+list3 =  [4,1,2,1,2]
+print("unique number in list1",singleNumber(list1))
+print("unique number in list2",singleNumber(list2))
+print("unique number in list3",singleNumber(list3))
+"""
+Q2
+check if a number is even or odd
+"""
+def evenOdd(num):
+    #use AND operator
+    #if last part of binary is 1 then odd, else 0
+    # AND - i & i
+    if (num & 1) == 1:
+        print(f"{num} :odd number")
+    else:
+        print(f"{num} even number")
+
+evenOdd(5)
+evenOdd(24)
+evenOdd(1125)
