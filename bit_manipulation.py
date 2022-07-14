@@ -6,6 +6,7 @@
 """
 #functions get a bit
 from os import GRND_RANDOM
+from typing import List
 
 
 def getBit(num , i):
@@ -102,15 +103,38 @@ print("binary z:     ",bin(z))
 print("adding 2 zeros to the right end of binary number z")
 print("binary z << 2:", bin(z <<2))
 print("RIGHT-SHIFT (>>)")
-# divide by 2
+# 
 print("z:", z)
 print("z >> 1:", (z >> 1))
 print("binary z:    ", bin(z))
 print("remove 1 number from right end of binary number z")
 print("binary z >> 1", bin(z >> 1))
-# divide by 4
+# 
 print("z:", z)
 print("z >> 2:", (z >> 4))
 print("binary z:    ", bin(z))
 print("remove 2 numbers from right end of binary number z")
 print("binary z >> 2", bin(z >> 2))
+#Questions
+"""
+Q1 - leetcode 136 single number
+Given a non-empty array of integers nums, 
+every element appears twice except for one. Find that single one.
+e.g [2, 2, 1]
+ans: 1
+e.g 2 [4,1,2,1,2]
+ans: 4
+"""
+def singleNumber(nums):
+    """
+    use XOR only 1-0 pair gives 1, else 0
+    and multiply numbers on list by XOR
+    """
+    ans = 0
+    for i in nums:
+        ans = ans ^ i
+    return ans
+#test cases
+list1 = [2, 2, 1]
+list2 = [ -1, 0, 0 , -1 , 2, -2, 2]
+print(singleNumber(list2))
