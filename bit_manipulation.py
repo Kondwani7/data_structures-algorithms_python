@@ -81,5 +81,23 @@ def greet():
     print("hey")
 print("67 in base 2", bin(greet.__code__.co_flags))
 #NOT (~) we think - tiide
-print("bitwise NOT for z:",~z)
+print("z:",z)
+#mutiply by 2 then * -1
+print("~ z:",~z)
+print("binary z:  ",bin(z))
+print("swap the two digits from the right end of binary number")
+print("binary ~z:",bin(~z))
+print("z:",z)
+#mutiply by 2
+print("left shift <<")
+print("z << 1:",z <<1)
+print("binary z:     ",bin(z))
+print("adding 1 zero to the right end of binary number z")
+print("binary z << 1:", bin(z <<1))
+print("z:",z)
+#mutiply by 4
+print("z << 2:", z<<2)
+print("binary z:     ",bin(z))
+print("adding 2 zeros to the right end of binary number z")
+print("binary z << 2:", bin(z <<2))
 
