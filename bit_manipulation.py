@@ -83,13 +83,14 @@ print("67 in base 2", bin(greet.__code__.co_flags))
 #NOT (~) we think - tiide
 print("z:",z)
 #mutiply by 2 then * -1
+print("NOT (~)")
 print("~ z:",~z)
 print("binary z:  ",bin(z))
 print("swap the two digits from the right end of binary number")
 print("binary ~z:",bin(~z))
 print("z:",z)
 #mutiply by 2
-print("left shift <<")
+print("LEFT-SHIFT (<<)")
 print("z << 1:",z <<1)
 print("binary z:     ",bin(z))
 print("adding 1 zero to the right end of binary number z")
@@ -100,4 +101,16 @@ print("z << 2:", z<<2)
 print("binary z:     ",bin(z))
 print("adding 2 zeros to the right end of binary number z")
 print("binary z << 2:", bin(z <<2))
-
+print("RIGHT-SHIFT (>>)")
+# divide by 2
+print("z:", z)
+print("z >> 1:", (z >> 1))
+print("binary z:    ", bin(z))
+print("remove 1 number from right end of binary number z")
+print("binary z >> 1", bin(z >> 1))
+# divide by 4
+print("z:", z)
+print("z >> 2:", (z >> 4))
+print("binary z:    ", bin(z))
+print("remove 2 numbers from right end of binary number z")
+print("binary z >> 2", bin(z >> 2))
