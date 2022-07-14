@@ -243,3 +243,27 @@ def changeIthBitt(num, i, value):
     return res
 print("change 1th bit to 1, new_num:", changeIthBitt(13, 1, 1))
 print('change 2th bit to 1, new_num:', changeIthBitt(13, 2, 0))
+"""
+q1 hammering weight
+Write a function that takes an unsigned integer and returns 
+the number of '1' bits it has (also known as the Hamming weight).
+"""
+def hammeringWeight(n):
+    """
+    gets the number of "1" bits in a number converted to binary
+    """
+    #get our number and covert it to a binary string
+    #initialize our count at 0
+    #loop in binary string, for every 1 in the character, 
+    #increase count by 1
+    n = str(bin(n))
+    #print to see binary
+    print(n)
+    count = 0
+    for i in n:
+        if i == "1":
+            count += 1
+    return count
+
+print("number of 1s in 13:", hammeringWeight(13))
+print("number of ones in z:", hammeringWeight(z))
