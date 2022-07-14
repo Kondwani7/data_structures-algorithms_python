@@ -223,3 +223,23 @@ print("clear 0th bit in 13, new num:", clearIthBit(13, 0))
 print("clear 1th bit in 13, new num:", clearIthBit(13, 1))
 print("clear 2th bit in 13, new num:", clearIthBit(13, 2))
 print("clear 3th bit in 13, new num:", clearIthBit(13, 3))
+#change ith bit to a new value
+"""
+q6
+set our ith bit to a new defined value(1 or 0 because its binary)
+"""
+def changeIthBitt(num, i, value):
+    """
+    clear our old ith bit
+    set(replace) our value(new) ith bit
+    """
+    #first clear - set to 0
+    mask1 = i << i
+    mask1 = ~mask1
+    res = num & mask1
+    #set our new valu to replace it
+    mask2 = value << i
+    res = res | mask2
+    return res
+print("change 1th bit to 1, new_num:", changeIthBitt(13, 1, 1))
+print('change 2th bit to 1, new_num:', changeIthBitt(13, 2, 0))
