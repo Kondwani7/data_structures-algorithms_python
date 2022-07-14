@@ -28,4 +28,18 @@ print("The value of our number changes after clearing the bit to:", clearBit(N, 
 #base 2 for example
 #in decimal 1234  in base 10 is 
 print("1234 in base 10:", (1 * 10**3 + 2 * 10**2 + 3 * 10 **1 + 4 * 10 ** 0 ))
+#base 2, binary we go from right to left 
+#e.g 13
+print("1011 in base 2:", (1 * 2 ** 0 + 0 * 2**1 + 1 * 2 ** 2 + 1 * 2 ** 3))
+#e.g
+x = 0b11001011
+y = 0b10101101
+#ob - start binary
+#remember start from right to left so for z read like: 
+# 1 * (2^0) + 0 * (2^1) + 1 * (2^2) + 0 *  (2^3) + 1 *  (2^4) + 0 * (2^5) + 1 * (2^6) 
+# + 0 * (2^7) + 1 * (2^8)
+z = 0b101010101
+print(x)
+print(y)
+print("base: 0b101010101 -> ", z)
 
