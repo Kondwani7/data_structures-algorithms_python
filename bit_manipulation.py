@@ -19,5 +19,9 @@ def clearBit(num, i):
     #bit unset
     mask = ~(1  << i)
     #return our udpdated value
-    return num * mask
-#
+    return num & mask
+#implementation
+N = 21
+print("The bit at 3rd position :", 1 if (getBit(N, 3)) else 0 )
+print("the value of our number changes after setting the bit to:", setBit(N, 0))
+print("The value of our number changes after clearing the bit to:", clearBit(N, 0))
