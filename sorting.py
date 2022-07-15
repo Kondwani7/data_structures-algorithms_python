@@ -66,11 +66,58 @@ def MergeSort(arr):
             k+=1
 MergeSort(arr1)
 print("merge sort array", arr1)
+#linear sorting
+#counting sort
+#its sorts an array by counting the number of occcurences of an elem in a array
+#sorted in a auxillary(temp) array then sorted by 
+# mapping count as the index of the auxillary(temp) array
+#e.g find the max element in a given array
+def countingSort(arr):
+    #time O(n+k) k eleemnt in list
+    """
+    target array e.g [2, 0 ,1, 4, 5, 2, 1] get , max, assort in descending order
+    sort the count of our target array in a temp array e.g 
+    store cumlative sum of elements in a array e.g [2, 2, 3, 7, 12, 14, 15]
+    get the index of every element in the original array and 
+    restore it and decrease count stored by 1
+    """
+    size = len(arr)
+    ans = [0] * size
+    #initialize ccount
+    count = [0] * 10
+    #store elements in count array
+    for i in range(0, size):
+        count[arr[i]] +=1
+    #store cumlative count
+    for i in range(1, 10):
+        count[i] += count[i-1]
+    #find index of elems in original array in the count array
+    #place elements in count array
+    i = size -1
+    while i>=0:
+        ans[count[arr[i]] - 1] = arr[i]
+        #reduce count
+        count[arr[i]] -=1
+        #reduce i
+        i -= 1
+    #copy sorted elements into original arry
+    for i in range(0, size):
+        arr[i] = ans[i] 
+arr3 = [4, 2, 2, 8, 3, 3, 1]
+print("inital array:", arr3)
+countingSort(arr3)
+print("counting sort array:",arr3)
 #bucket sort
 #works well when the input is drawn from a fixed set k integers
 #uses hashing to partition certain keys of an array
 #
 def bucketSort(arr):
+    """
+    create an empty arr of buckets n based on array size
+    for every elem in arr, insert in bucket array bucket[n * arr[i]]
+    sort buckets with insertion sort
+    concatenate all sorted buckets and return
+    """
     #sorts array values in buckets ,e.g 1-5 , 5-10 etc buckets
     bucket = []
     #initialize with empty buckets
@@ -93,3 +140,6 @@ def bucketSort(arr):
 #bucket time O(n + k), worse case(n^2)
 arr2 =  [.42, .32, .33, .52, .37, .47, .51]
 print("bucket sort", bucketSort(arr2))
+#radix sort
+#it groups elements in some place value 
+# then sorting in increasing or decreasing order 
