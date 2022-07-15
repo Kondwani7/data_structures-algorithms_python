@@ -1,4 +1,7 @@
 #quick sort, spliting an array in  partition then sorting recursively or iteratively
+import math
+
+
 def partition( l, r, nums ):
     
     #random number pointer is our l
@@ -63,3 +66,30 @@ def MergeSort(arr):
             k+=1
 MergeSort(arr1)
 print("merge sort array", arr1)
+#bucket sort
+#works well when the input is drawn from a fixed set k integers
+#uses hashing to partition certain keys of an array
+#
+def bucketSort(arr):
+    #sorts array values in buckets ,e.g 1-5 , 5-10 etc buckets
+    bucket = []
+    #initialize with empty buckets
+    for i in range(len(arr)):
+        bucket.append([])
+    #insert into perspective buckets
+    for n in arr:
+        index_buc = int(10 *n)
+        bucket[index_buc].append(n)
+    #sort eleemnts in bucket
+    for i in range(len(arr)):
+        bucket[i] = sorted(bucket[i])
+    #get our sorted elements
+    k = 0
+    for i in range(len(arr)):
+        for j in range(len(bucket[i])):
+            arr[k] = bucket[i][j]
+            k +=1
+    return arr
+#bucket time O(n + k), worse case(n^2)
+arr2 =  [.42, .32, .33, .52, .37, .47, .51]
+print("bucket sort", bucketSort(arr2))
