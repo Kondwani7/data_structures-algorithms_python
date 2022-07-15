@@ -19,3 +19,30 @@ def linearSearch(arr, val):
     return print("linear search: not found", -1)
 #time O(1)
 linearSearch(arr1, 5)
+#binary search iterative and recursive
+#recursive - divide and conquer
+#get low(first) and high(last) in array
+#get midpoint
+# val == mid return mid
+#if val >mid, check on the right [mid:]
+#decrease mid -=1
+#if val < mid, check on left [:mid]
+# mid += 1
+
+def binarySeachItr(arr, val):
+    arr.sort()
+    low = 0
+    high = len(arr) -1
+    while low <= high:
+        mid = (low + high) //2
+        if arr[mid] > val:
+            high = mid -1
+        elif arr[mid] < val:
+            low = mid +1
+        else:
+            return mid
+    return -1
+
+arr2 = [3, 4, 5, 6, 7, 8, 9]
+print("binary search: found at position:",binarySeachItr(arr1, 5))
+
