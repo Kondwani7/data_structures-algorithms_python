@@ -267,3 +267,5 @@ def hammeringWeight(n):
 
 print("number of 1s in 13:", hammeringWeight(13))
 print("number of ones in z:", hammeringWeight(z))
+print(bin(13))
+print(bin(~13))

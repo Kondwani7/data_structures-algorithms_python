@@ -1,7 +1,7 @@
-#quick sort, spliting an array in  partiion then sorting recursively or iteratively
+#quick sort, spliting an array in  partition then sorting recursively or iteratively
 def partition( l, r, nums ):
     
-    #randome numbe pointer is our l
+    #random number pointer is our l
     pivot, ptr = nums[r], l
     for i in range(l, r):
         if nums[i] <= pivot:
@@ -27,3 +27,39 @@ def quicksort(l, r, nums):
 arr1 = [3, 45, 67, 2, 0 , 8, -4 , 23, 7, 12, 13]
 print("initial array:", arr1)
 print("quicksort:", quicksort(0, len(arr1) -1, arr1))
+#merge sort split at mid point not a roandom pivot
+def MergeSort(arr):
+    if len(arr)>1:
+        mid = len(arr)//2
+        #before mid point
+        left = arr[:mid]
+        #after midpoint
+        right = arr[mid:]
+        #recurisvely sort on left and right
+        MergeSort(left)
+        MergeSort(right)
+        i=j=k=0
+        #two points i and j loop through list from right and left
+        while i<len(left) and j<len(right):
+            #if i at left is smaller than right, update array at index k with left
+            if left[i] < right[j]:
+                arr[k] = left[i]
+                i+=1
+            #else if j is smaller in right, update array at index k with right 
+            else:
+                arr[k] = right[i]
+                j+=1
+            #if equal just increment k index
+            k+=1
+        #then update arr with left at index k while going through left
+        while i<len(left):
+            arr[k]=left[i]
+            i+=1
+            k+=1
+        #and update arr with right at index k while going through rigt
+        while j<len(right):
+            arr[k] =right[j]
+            j+=1
+            k+=1
+MergeSort(arr1)
+print("merge sort array", arr1)
