@@ -10,3 +10,19 @@ print(arrSet1)
 # create a equivalence class : set MAKESET(x)
 # finding a equivalence class name : find FIND(X) quick find - path compression
 # combining equivalence classes : union - UNION(X,Y) quick union size and/or height + path compression
+
+class DisjointSet:
+    def __init__(self, n):
+        self.MAKESET(n)
+    #make set
+    def MAKESET(self, n):
+        self.S = [-1 for x in range(n)]
+    #find
+    def FIND(self, X):
+        if(self.S[X] < 0):
+            return X
+        else:
+            return self.FIND(self.S[X])
+    #union by size
+    
+    
