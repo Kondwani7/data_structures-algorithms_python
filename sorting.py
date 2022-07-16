@@ -142,4 +142,4 @@ arr2 =  [.42, .32, .33, .52, .37, .47, .51]
 print("bucket sort", bucketSort(arr2))
 #radix sort
 #it groups elements in some place value 
-# then sorting in increasing or decreasing order 
+# then sorting in increasing or decreasing order

@@ -34,7 +34,7 @@ class MinHeap:
         """
         this function will traverse a heap
             description:
-            - it sift dow (swap) values larger than the ones below it
+            - it sift down (swap) values larger than the ones below it
             - until a heap structure is created
         """
         #left and right of heap
@@ -120,6 +120,7 @@ hp1.insert(8)
 hp1.insert(3)
 hp1.insert(12)
 hp1.insert(6)
+print("min heap")
 hp1.printHeap()
 #max heap the largest value is at the top: start of heap
 class MaxHeap:
@@ -144,7 +145,7 @@ class MaxHeap:
         #opposite while i is smalle than left or right
         while (left < len(self.heap) and self.heap[i] < self.heap[left]) or (right < len(self.heap) and self.heap[i] < self.heap[right]):
             #biggest between left or right
-            biggest = left if (right >= len(self.head) or self.heap[left] > self.heap[right]) else right
+            biggest = left if (right >= len(self.heap) or self.heap[left] > self.heap[right]) else right
             #swap left and right
             self.heap[i], self.heap[biggest] = self.heap[biggest], self.heap[i]
             i = biggest
@@ -175,14 +176,15 @@ class MaxHeap:
             self.siftup(i)
         else:
             self.siftdown(i)
-    #update
+    #update 
     def update(self, old, new):
         if old in self.heap:
             self.update_by_index(self.heap.index(old), new)
 #heap sort
 def heapsort(arr):
     heap = MinHeap(arr)
-    return print("heapified array:", [heap.extract_min() for i in range(len(heap.heap))])
+    return print("min heapified array:", [heap.extract_min() for i in range(len(heap.heap))])
+
 
 
 arr1 = [3, 42, 5, 8, 12, 3, 9, 15, 67, 12]

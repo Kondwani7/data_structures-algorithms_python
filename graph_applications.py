@@ -4,7 +4,6 @@
 #first recursive
 from collections import defaultdict
 
-
 class Graph:
     def __init__(self, vertices):
         self.graph = defaultdict(list)
@@ -16,7 +15,7 @@ class Graph:
         this function connects edges to 2 points in a graph
         args:
             - u: source vertex
-            - v: destinatin vertex
+            - v: destination vertex
         """
         self.graph[u].append(v)
     #this will be used by DFS
@@ -32,7 +31,7 @@ class Graph:
         for vertex in self.graph:
             if vertex not in visited:
                 self.DFSUtil(vertex, visited)
-    #breadth first seach - level order traversal
+    #breadth first serach - level order traversal FIFO
     def BFS(self, s):
         """
         this function traverses a graph with BFS
@@ -57,11 +56,12 @@ class Graph:
                     queue.append(i)
                     #list as visited now
                     visited[i] = True
-    #topological sorting into DAGS -> applications  scheduling jbos: Airflow ETL or AI pipelines
-    #topological sorting with DFS fist
+    #topological sorting into DAGS -> applications  scheduling jobs: Airflow ETL or AI pipelines
+    #topological sorting with DFS first
+    #topological sort is a series of shortest paths
     def topologicalSortUtil(self, v, visited, stack):
         visited[v] = True
-        #visited all node v in graph 
+        #visit all node v in graph 
         for i in self.graph[v]:
             #if not vistied
             if visited[i] == False:
@@ -77,13 +77,13 @@ class Graph:
         for i in range(self.V):
             if visited[i] == False:
                 self.topologicalSortUtil(i, visited, stack)
-        #print stack
+        #print stack in reverse
         print(stack[::-1])
-    #topological sort BFS -> kahn's algorithm
+    #topological sort BFS -> kahn's algorithm topological - weighted graph
     #steps - find number of indegree => incoming edges/ not visted
-    #pick vertices wwth indegree 0 and enqueue add to our initialize queue
-    #remove vertex from queue -dequeue
-        # increase ccount of visited nodes-> decrease by in-degree 1 -> in-degree neighbors if 0 enqueue to our queue
+    #pick vertices with indegree 0 and enqueue add to our initialize queue
+    #remove vertex from queue = dequeue
+    #increase count of visited nodes-> decrease by in-degree 1 -> in-degree neighbors if 0 enqueue to our queue
     #repeat last step on queue is empty
     #if no of visised nodes != nodes in graph topological sort is not possible
     #Time => O(v + e) numbers vertices + edges
@@ -201,7 +201,7 @@ print(g3)
 def shortest_pathBFS(graph, start, goal):
     #distance to goal
     dist = []
-    #queue to traverse graph
+    #queue to traverse graph from "start" vertex
     queue = [[start]]
     if start == goal:
         print("same node is the shortest path")
@@ -231,7 +231,7 @@ def shortest_pathBFS(graph, start, goal):
 
     
 
-shortest_pathBFS(g3, 'B', 'G')
+shortest_pathBFS(g3, 'C', 'G')
 #using adjaceny matrix just for dijkstra
 class GraphM:
     def __init__(self, vertices):
@@ -247,7 +247,7 @@ class GraphM:
     def minDistance(self, dist, sptSet):
         #inital with a high value
         minVal = 1e7
-        #search for nearest vertex not in the shortest path tree
+        #search for nearest vertex that's not in the shortest path tree
         for v in range(self.V):
             if dist[v] < minVal and  sptSet[v] == False:
                 minVal = dist[v]
@@ -257,12 +257,12 @@ class GraphM:
 
     def dijkstra(self, src):
         """
-        #dijkstra - greedy approach, it always picks the vertex closest to the source
-        #use a priority queue to store unvisited vertices from our target distance
-        #it keeps tracks of distances of source to v in a distance table, 
-        #it does not work with weights = -1
-        #this table is created after the kth iteration
-        # in essence it is a sum of shortest path trees
+        Dijkstra - greedy approach, it always picks the vertex closest to the source
+        use a priority queue to store unvisited vertices from our target distance
+        it keeps tracks of distances of source to v in a distance table, 
+        it does not work with weights = -1
+        this table is created after the kth iteration
+        in essence it is a sum of shortest path trees
         """
         #inital extremely high distance of all vertices in graph
         dist = [1e7] * self.V
@@ -312,3 +312,64 @@ if g5.isCyCilc() == 1:
     print("graph is a cylce")
 else:
     print("no cycle")
+#strongly connected graphs (count)
+#all the  vertices are connected by edges are connected in a cycle
+
+class Graph2:
+    def __init__(self, vertex):
+        self.V = vertex
+        self.graph = defaultdict(list)
+    #add an edge
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+    #DFS
+    def DFS(self, v, visited_vertex):
+        visited_vertex[v] = True
+        print(v, end=" ")
+        for i in self.graph[v]:
+            if not visited_vertex[i]:
+                #recurssively updated as visited
+                self.DFS(i, visited_vertex)
+    #fill order push elements visited using DFS to stack
+    def fil_order(self, v, visited_index, stack):
+        visited_index[v] = True
+        for i in self.graph[v]:
+            if not visited_index[i]:
+                self.fil_order(i, visited_index, stack)
+        stack = stack.append(v)
+    #reverse
+    def transpose(self):
+        g = Graph2(self.V)
+        for i in self.graph:
+            for j in self.graph[i]:
+                g.add_edge(j, i)
+        return g
+    #now get strongly connected components
+    def stronglyConnected(self):
+        stack = []
+        visited_index = [False] * self.V
+        for i in range(self.V):
+            if not visited_index[i]:
+                self.fil_order(i, visited_index, stack)
+        gRev = self.transpose()
+
+        visited_index = [False] * self.V
+        #store in ans array
+        while stack:
+            i = stack.pop()
+            #not viisted
+            if not visited_index[i]:
+                gRev.DFS(i, visited_index)
+                print("")
+g6 = Graph2(8)
+g6.add_edge(0, 1)
+g6.add_edge(1, 2)
+g6.add_edge(2, 3)
+g6.add_edge(2, 4)
+g6.add_edge(3, 0)
+g6.add_edge(4, 5)
+g6.add_edge(5, 6)
+g6.add_edge(6, 4)
+g6.add_edge(6, 7)
+#print storngly connected ccomponents
+g6.stronglyConnected()

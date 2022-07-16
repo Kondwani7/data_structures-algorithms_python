@@ -4,7 +4,6 @@
 #topological sort
 #graph questions - leetcode
 #graph with a matrix
-from unicodedata import name
 
 
 class VertexM:
@@ -27,8 +26,9 @@ class GraphM:
         else:
             return False
     def add_edge(self, u, v, weight=1):
+        #matching row to column
         if u in self.vertices and v in self.vertices:
-            #drawing the connection
+            #drawing the connection an attaching the weight
             self.edges[self.edges_indices[u]][self.edges_indices[v]] = weight
             self.edges[self.edges_indices[v]][self.edges_indices[u]] = weight
             return True
@@ -57,7 +57,7 @@ for edge in edges:
 print("graph adjaceny matrix")
 g.print_graph()
 
-#graph adjacey list
+#graph adjaceny list
 class Vertex:
     def __init__(self, node):
         self.node = node
@@ -93,7 +93,6 @@ g2.add_vertex(a)
 g2.add_vertex(Vertex('B'))
 for i in range(ord('A'), ord('K')):
     g2.add_vertex(Vertex(chr(i)))
-
 
 for edge in edges:
     g2.add_edge(edge[:1], edge[1:])
