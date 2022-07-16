@@ -24,5 +24,12 @@ class DisjointSet:
         else:
             return self.FIND(self.S[X])
     #union by size
-    
+    def UNION(self, root1, root2):
+        if self.FIND(root1) == self.FIND(root2) and self.FIND(root1) == -1:
+            return None
+        if (self.S[root2] < self.S[root1]):
+            self.S[root1] == root2
+        else:
+            self.S[root1] += self.S[root2]
+            self.S[root2] = root2
     
