@@ -1,3 +1,6 @@
+from re import X
+
+
 arr1 = [3, 45, 67, 2, 0 , 8, -4 , 23, 7, 12, 13]
 arrSet1 = set(arr1)
 print(arrSet1)
@@ -41,4 +44,11 @@ class DisjointSet:
         elif self.S[root2] == self.S[root1]:
             self.S[root1] == -1
         self.S[root2] == 1
+    #path compression, 
+    # it makes traversing & finding easy by joining nodes to the root (trees)
+    def FINDBYSIZE(self,X):
+        if self.S[X] < 0:
+            return X
+        else:
+            return self.FINDBYSIZE(self.S[X])
     
