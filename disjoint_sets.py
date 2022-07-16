@@ -32,4 +32,13 @@ class DisjointSet:
         else:
             self.S[root1] += self.S[root2]
             self.S[root2] = root2
+    #union by height
+    def UNIONheight(self, root1, root2):
+        if self.FIND(root1) == self.FIND(root2) and self.FIND(root1) == -1:
+            return None
+        if self.S[root2] < self.S[root1]:
+            self.S[root1] == root2
+        elif self.S[root2] == self.S[root1]:
+            self.S[root1] == -1
+        self.S[root2] == 1
     
