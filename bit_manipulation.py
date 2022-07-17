@@ -5,6 +5,7 @@
 #Bitwise AND (&)OR (|), XOR(^),NOT(!) XOR()
 """
 #functions get a bit
+from heapq import nsmallest
 from os import GRND_RANDOM
 from typing import List
 
@@ -269,3 +270,22 @@ print("number of 1s in 13:", hammeringWeight(13))
 print("number of ones in z:", hammeringWeight(z))
 print(bin(13))
 print(bin(~13))
+#find a missing number
+"""
+Leetcode
+Given an array nums containing n distinct numbers in the range [0, n], 
+return the only number in the range that is missing from the array.
+e.g [1, 3, 4, 6, 7]
+missing number = 2
+"""
+#sum of numbers could be used to find it
+#sum of numbers n *(n+1) /2
+#then deducting sum from total lenght of numbers to get the missing number
+print("missing number")
+arr1 = [2, 4, 5, 6, 7]
+def missingNumber(arr):
+    ans = len(arr)
+    for i in range(len(arr)):
+        ans += (i - arr[i])
+    return ans
+print(missingNumber(arr1))
