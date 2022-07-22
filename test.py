@@ -2,7 +2,7 @@ import sys
 
 
 num = [3, 2, 4, 5, 7 ,6]
-print(num[num[2]])
+#print(num[num[2]])
 #print(list[-2:])
 #print(int(123))
 from sys import getsizeof
@@ -83,3 +83,22 @@ x = [[3], [2, 2], [3, 4, 5]]
 #print(f3(x))
 #print(f1(x))
 #print(f2(x))
+print(0x89)
+print(bin(0x89))
+print(0b001010010)
+print(bin(98))
+a = 0x01 | 0x01
+b = 0x01 & 0x00 
+c = 0x01 | 0x00
+d = 0x66 & 0x22
+e = 0x44 | 0x22
+f = 0x89 & 0x01
+g= 0x88 & 0x01
+h = 0x02 >> 1
+i = 0x89 >> 3
+j = 0x01 << 1
+k = 0x13 << 1
+l = ~ 0x12
+m = ~ 0x98
+#print(l)
+#print(m)
