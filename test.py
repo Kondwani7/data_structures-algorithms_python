@@ -102,3 +102,13 @@ l = ~ 0x12
 m = ~ 0x98
 #print(l)
 #print(m)
+aset = set()
+cool = "cod"
+aset.add(cool)
+count = 0
+foo = "cookchickenwithriced"
+for i in range(len(foo)):
+    if foo[i] in aset:
+        count += 1
+    print(count)
+print(aset)
