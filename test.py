@@ -112,3 +112,6 @@ for i in range(len(foo)):
         count += 1
     print(count)
 print(aset)
+amount = 11
+dp = [amount + 1] * (amount + 1)
+print(dp)
