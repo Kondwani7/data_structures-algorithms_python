@@ -111,7 +111,25 @@ for i in range(len(foo)):
     if foo[i] in aset:
         count += 1
     print(count)
-print(aset)
+#print(aset)
 amount = 11
 dp = [amount + 1] * (amount + 1)
-print(dp)
+#print(dp)
+print(8 //2)
+
+output = set()
+
+arr1 = ["3", "3", "2", "2", "1"]
+arr2 = ["1", "3", "2"]
+for x in arr1:
+    output.add(x)
+print(output)
+#check for duplicates
+def checkDuplicates(arr):
+    if len(arr) == len(set(arr)):
+        return False
+    else:
+        return True
+
+print("are there duplicates in array 1?",checkDuplicates(arr1))
+print("are there duplicates in array 2?", checkDuplicates(arr2))

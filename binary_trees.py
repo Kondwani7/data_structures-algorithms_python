@@ -1,15 +1,14 @@
 #tree has a left andr right nodes
 from collections import deque
 
-
-class Node:
+class Node: 
     def __init__(self, data):
         self.left = None
         self.right = None
         self.data = data
     #insertion
     def insert(self, data):
-        #binary tree, if less than curr node go to the left side
+        #binary search tree, if less than curr node go to the left side
         if data < self.data:
             if self.left is None:
                 self.left = Node(data)
