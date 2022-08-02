@@ -133,3 +133,14 @@ def kthSmallestBS(arr, k):
     return low
 
 print("k smallest element with binary search:", kthSmallestBS(arr1, 3))
+
+#k largest element from 2  sorted arrays
+
+#find 2 smallest numbers in a array
+#brute force would just be to sort in decreasing order
+#and get the 0, 1 index elements in our array
+def firstSecondSmallestElems(arr):
+    arr.sort()
+    return (arr[0], arr[1])
+arr2 = [3, 22, 1, 2, 3, 44, 0, -4, 1]
+print("brute force smallest and second smallest items in array: ", firstSecondSmallestElems(arr2))
