@@ -3,6 +3,7 @@
 #e.g arr1 = [7, 10, 4, 3, 20, 15], k= 3 , output = 7
 #option 1 is just to sort the algorithm
 #time O(nlogn)
+import math
 import sys
 
 
@@ -140,7 +141,30 @@ print("k smallest element with binary search:", kthSmallestBS(arr1, 3))
 #brute force would just be to sort in decreasing order
 #and get the 0, 1 index elements in our array
 def firstSecondSmallestElems(arr):
+    """
     arr.sort()
     return (arr[0], arr[1])
+    """
+    #optimal time O(n) space O(1) is two scan the array twice
+    #record the smallest
+    #then scan again to find a element smaller than our tmp smallest
+    size = len(arr)
+    if size < 2:
+        return
+    #initialize our first and second smallest items as large inf
+    first= second = math.inf
+    for i in range(0, size):
+        if arr[i] < first:
+            second = first
+            first = arr[i]
+        #if array is between first and second
+        elif(arr[i] < second and arr[i] != first):
+            second = arr[i]
+    if (second == math.inf):
+            print("no second smallest")
+    else:
+        return(first,second)
+    
 arr2 = [3, 22, 1, 2, 3, 44, 0, -4, 1]
-print("brute force smallest and second smallest items in array: ", firstSecondSmallestElems(arr2))
+#time o(nlogn) space(1)
+print("first & second smallest items in array: ", firstSecondSmallestElems(arr2))
