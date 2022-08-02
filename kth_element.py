@@ -3,12 +3,15 @@
 #e.g arr1 = [7, 10, 4, 3, 20, 15], k= 3 , output = 7
 #option 1 is just to sort the algorithm
 #time O(nlogn)
+import sys
+
+
 def kthSmallest(arr, k):
     arr.sort()
     return arr[k- 1]
 
 arr1 = [7, 10, 4, 3, 20, 15]
-print(kthSmallest(arr1, 3))
+print("kth smallest element by sorting in ascending order", kthSmallest(arr1, 3))
 #sets because they demonstrate the distinct items in array
 def kthSmallest2(arr, k):
     n = len(arr)
@@ -18,8 +21,7 @@ def kthSmallest2(arr, k):
             print(i)
             break
         k -= 1
-
-print(kthSmallest2(arr1, 3))
+print("kth smallest element with a set", kthSmallest2(arr1, 3))
 #using a min heap
 #time O(nlogn)
 class MinHeap:
@@ -79,4 +81,32 @@ def kthSmallestMinHeap(arr, k):
         mh.extract_min()
     return mh.getMin()
 
-print(kthSmallestMinHeap(arr1, 3))
+print("kth smallest element with a minheap: ",kthSmallestMinHeap(arr1, 3))
+#quick sort - we use a pivot and sort until we get to the kth element
+def kthSmallestQuickSort(arr,l, r, k):
+    if (k > 0 and k <= r -l + 1):
+        pos = partition(arr, l, r)
+        #position is the same as k
+        if (pos - 1 == k - 1):
+            return arr[pos]
+        #position is greater move down array, reduce right by pos
+        if (pos - 1 > k - 1):
+            return kthSmallestQuickSort(arr, l, pos - 1, k)
+        #else move up array
+        if (pos - 1 < k -1):
+            return kthSmallestQuickSort(arr, pos + 1, r, k - pos + l - 1 )
+    return sys.maxsize
+
+def partition(arr, l, r):
+    x = arr[r]
+    i = l
+    for j in range(l, r):
+        if (arr[j] <= x):
+            #swap to all smaller elements on the left
+            arr[i], arr[j] = arr[j], arr[i]
+            i+= 1
+    #then swap last element
+    arr[i], arr[r] = arr[r], arr[i]
+    return i
+
+print("kth smallest element with quicksort", kthSmallestQuickSort(arr1, 0, len(arr1) - 1, 3))
