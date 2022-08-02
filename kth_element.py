@@ -109,4 +109,27 @@ def partition(arr, l, r):
     arr[i], arr[r] = arr[r], arr[i]
     return i
 
-print("kth smallest element with quicksort", kthSmallestQuickSort(arr1, 0, len(arr1) - 1, 3))
+print("kth largest element with quicksort", kthSmallestQuickSort(arr1, 0, len(arr1) - 1, 3))
+#find kth smallest with binary search
+def count(nums, mid):
+    cnt = 0
+    for i in range(len(nums)):
+        if nums[i] <= mid:
+            cnt += 1
+    return cnt
+
+def kthSmallestBS(arr, k):
+    low = sys.maxsize
+    high = -sys.maxsize - 1
+    for i in range(len(arr)):
+        low = min(low, arr[i])
+        high = max(high, arr[i])
+    while low < high:
+        mid = (low + high) // 2
+        if count(arr, mid) < k:
+            low = mid + 1
+        else:
+            high = mid
+    return low
+
+print("k smallest element with binary search:", kthSmallestBS(arr1, 3))
