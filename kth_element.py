@@ -134,8 +134,44 @@ def kthSmallestBS(arr, k):
     return low
 
 print("k smallest element with binary search:", kthSmallestBS(arr1, 3))
+arr2 = [3, 22, 1, 2, 3, 44, 0, -4, 20, 1]
 
 #k largest element from 2  sorted arrays
+def kthLargest2Arrays(arr1, arr2, k):
+    """
+    assumption is that we are joining both arrays and finding the smallest value
+    """
+    #brute force may be to join both arrays in a temp array
+    #sort the temp arry, and get the index of the kth value
+    #instead lets use divided and conquer
+    arr1.sort()
+    arr2.sort()
+    arr1_size = len(arr1)
+    arr2_size = len(arr2)
+    if arr1_size + arr2_size < k:
+        #if max value
+        return float('inf')
+    #last element of array 1
+    i = arr1_size - 1
+    #last element of array 2
+    j = arr2_size - 1
+    curr = float("inf")
+    while k >0 and i>=0 and j>=0:
+        #if the last item in array 1 is greater than the last element in array 2 
+        if arr1[i] > arr2[j]:
+            #set our current to array 1's last item
+            curr = arr1[i]
+            #shift down from array 1
+            i -= 1
+        else:
+            #oppoisite case
+            curr = arr2[k]
+            j -= 1
+        #otherwise if equal
+        k -= 1
+    return curr if k == 0 else(arr2[j-k+1] if i < 0 else arr2[i-k+1])
+
+print("k largest element from 2 sorted arrays", kthLargest2Arrays(arr1, arr2, 3))
 
 #find 2 smallest numbers in a array
 #brute force would just be to sort in decreasing order
@@ -165,6 +201,5 @@ def firstSecondSmallestElems(arr):
     else:
         return(first,second)
     
-arr2 = [3, 22, 1, 2, 3, 44, 0, -4, 1]
 #time o(nlogn) space(1)
 print("first & second smallest items in array: ", firstSecondSmallestElems(arr2))
