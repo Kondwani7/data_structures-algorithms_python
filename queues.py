@@ -56,3 +56,35 @@ class Q:
     #check if empty
     def isEmpty(self):
         return len(self.q) == 0
+
+#queue with a linked list
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+class Queue:
+    def __init__(self):
+        #it has a end and start of list
+        self.front = None
+        self.rear = None
+       
+    #if empty check if front is null
+    def isEmpty(self):
+        return self.front == None
+    
+    #add data
+    def add(self, x):
+        temp = Node(x)
+        if self.rear == None:
+            self.front = self.rear = temp
+            return
+        self.rear.next = temp
+        self.rear = temp
+    #delete data from queue
+    def remove(self):
+        if self.isEmpty():
+            return
+        temp = self.front
+        self.front = temp.next
+        if(self.front == None):
+            self.rear = None
