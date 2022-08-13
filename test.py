@@ -133,3 +133,11 @@ def checkDuplicates(arr):
 
 print("are there duplicates in array 1?",checkDuplicates(arr1))
 print("are there duplicates in array 2?", checkDuplicates(arr2))
+
+#testing moding
+a = 7
+b = 3
+print(a % 4)
+print(b % 4)
+arr7 = [3, 2, 4, 5, 2]
+print(arr7[len(arr7) -1])
